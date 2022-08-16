@@ -7,6 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    Aside_bar: typeof import('./src/components/pages/sidebar.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    Pages: typeof import('./src/components/pages/index.vue')['default']
+    Sidebar: typeof import('./src/components/pages/sidebar.vue')['default']
+    TopNavigationBar: typeof import('./src/components/navigation/TopNavigationBar.vue')['default']
   }
 }
