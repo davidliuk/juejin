@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     AppSideSticky: typeof import('./src/components/AppSideSticky.vue')['default']
     AppTopNav: typeof import('./src/components/AppTopNav.vue')['default']
     ASpace: typeof import('@arco-design/web-vue')['Space']
+    Copy: typeof import('./src/components/navigation/copy.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
