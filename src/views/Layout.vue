@@ -22,4 +22,9 @@ export default {
 }
 </script>
 
-<style scoped lang='less'></style>
+<style >
+
+:root {
+  font-size: 12px;
+}
+</style>
