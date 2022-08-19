@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite';
 import { ArcoResolver } from 'unplugin-vue-components/resolvers';
+import mdPlugin, { Mode } from 'vite-plugin-markdown';
 import path from 'path'
 
 // https://vitejs.dev/config/
@@ -12,6 +13,8 @@ export default defineConfig({
     AutoImport({
       resolvers: [ArcoResolver()],
     }),
+    mdPlugin,
+    // md(),
     Components({
       resolvers: [
         ArcoResolver({

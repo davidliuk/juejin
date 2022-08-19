@@ -1,8 +1,8 @@
 <template>
   <nav>顶部通栏综合等一直吸附在顶部</nav>
-  <AppTopNav/>
-<!--  <header>头部掘金图标</header>-->
-<!--  <h1>test</h1>-->
+  <AppTopNav />
+  <!--  <header>头部掘金图标</header>-->
+  <!--  <h1>test</h1>-->
   <main class="main-content">
     <!-- 二级路由 -->
     <div class="left-column">
@@ -17,22 +17,21 @@
   <!-- <footer>底部</footer> -->
 </template>
 
-<script>
+<script lang="ts">
 // import Header from "@/components/Header.vue"
-import AppTopNav from '@/components/AppTopNav.vue'
+import AppTopNav from "@/components/AppTopNav.vue";
 import AppSideBar from "@/components/AppSideBar.vue";
 
 export default {
-  name: 'Layout',
+  name: "Layout",
   components: {
     AppTopNav,
     AppSideBar,
-  }
-}
+  },
+};
 </script>
 
 <style scoped lang="less">
-
 body {
   font-size: 12px;
   line-height: normal;
@@ -53,6 +52,5 @@ body {
     top: 0px;
     right: 0px;
   }
-
 }
 </style>

@@ -91,7 +91,7 @@
 </template>
     
 <script lang='ts'>
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 // import { defineComponent } from 'vue'
 import { getCategories, getArticleById, getArticles, getCommentsByArticleId } from '../../fake-api'
 import { onMounted, onUnmounted } from "vue";
