@@ -26,17 +26,23 @@ export default {
   name: 'Layout',
   components: {
     AppTopNav,
+    AppSideBar,
   }
 }
 </script>
 
 <style scoped lang="less">
 
+body {
+  font-size: 12px;
+  line-height: normal;
+}
+
 .main-content {
   position: relative;
   width: 960px;
-  margin: 100px auto;
-
+  margin: 0 auto;
+  margin-top: 5.67rem;
   .left-column {
     width: 700px;
   }
@@ -44,8 +50,8 @@ export default {
   .right-column {
     position: absolute;
     width: 240px;
-    top: 0;
-    right: 0;
+    top: 0px;
+    right: 0px;
   }
 
 }

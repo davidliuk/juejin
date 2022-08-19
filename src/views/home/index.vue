@@ -1,27 +1,26 @@
 <script lang="ts" >
 import { defineComponent } from 'vue';
-
+import ListNav from './ListNav.vue'
 import List from './List.vue'
 export default defineComponent ({
   name: 'home-page-list',
-  components:{ List },
+  components:{ List, ListNav },
   
 })
 
 </script>
 
-<style scoped lang='less'></style> -->
-
 <template>
 <div class='entry-list-container'>
   <nav class="list-nav">
-    <ul class="nav-list left">
+    <!-- <ul class="nav-list left">
       <li class="nav-item">
       推荐
       最新
       热榜
       </li>
-    </ul>
+    </ul> -->
+    <ListNav/>
   </nav>
   <div class="entry-list-wrap">
     <div class="entry-list list">

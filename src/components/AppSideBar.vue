@@ -18,7 +18,8 @@
             <rect x="16" y="16" width="3" height="2" rx="1" fill="#FF7D00"></rect>
           </svg>
           <span class="title">
-          下午好！
+          <!-- 需要根据时间进行输出 -->
+          下午好！晚上好！早上好！
           </span>
         </div>
         <button class="signin-btn"><span class="btn-text" data-v-68373e0a="">去签到</span></button>
