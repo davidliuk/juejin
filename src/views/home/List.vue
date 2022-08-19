@@ -108,7 +108,7 @@ export default {
 
       //距离=总高-滚动距离-可视区高
       let distance = scrollHeight - scrollTop - clientHeight;
-      if(distance < 10) {
+      if(distance < 50) {
         loadMore()
         // console.log( distance );
       }
@@ -156,8 +156,10 @@ export default {
   font-size:12px;
   line-height: normal;
   list-style: none;
-  border: 1px solid #ccc;
-  margin-bottom: -1px; /* 上下边框合并一下 */
+  border: 1px 0 0 0 solid #ccc;
+  border-bottom-width: 0px;
+  background-color: #fff;
+  /*margin-bottom: -1px; /* 上下边框合并一下 */
 }
 .entry {
   display: flex;
@@ -371,14 +373,21 @@ div {
 .entry .dislike-button {
     top: 1.333rem;
 }
+.entry:hover {
+  background-color: rgb(250, 250, 250);
+}
 .entry:hover .dislike-button {
     display: block;
+}
+.dislike-button:hover .icon-close path {
+  /*悬浮变色*/
+  fill: #007fff;
 }
 .dislike-button {
     display: inline-block;
     width: 1rem;
     height: 1rem;
-    background: url(//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/29d9ea6….svg) 0 0 no-repeat;
+    background: url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/29d9ea6….svg) 0 0 no-repeat;
     background-size: 100% 100%;
     cursor: pointer;
 }
@@ -448,7 +457,7 @@ svg {
     background-size: 100% 100%;
 }
 .dislike-menu .menu-item .icon-dislike {
-    background-image: url(//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/d51cb68….svg);
+    background-image: url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/d51cb68873fed0eefbe66dd4323b5590.svg);
 }
 .dislike-menu .menu-item .menu-text {
     margin-left: 0.667rem;
@@ -472,7 +481,7 @@ svg {
 }
 .dislike-menu .menu-item .icon-block-user {
     flex: 0 0 auto;
-    background-image: url(//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/bc11676….svg);
+    background-image: url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/bc11676ce6e57f9b6a31638cd903e3f7.svg);
 }
 .dislike-menu .menu-item .tooltip {
     flex: 0 1 auto;
@@ -495,7 +504,7 @@ svg {
     background-size: 100% 100%;
 }
 .dislike-menu .menu-item .icon-block-tag {
-    background-image: url(//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/ee8bcf8….svg);
+    background-image: url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/ee8bcf878773b9f4ed2fce9b786c455f.svg);
 }
 .dislike-menu .menu-item .menu-text {
     margin-left: 0.667rem;
@@ -505,11 +514,11 @@ svg {
 }
 .dislike-menu .menu-item .icon-arrow {
     margin-left: auto;
-    background-image: url(//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/806fb59….svg);
+    background-image: url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/806fb5956ad7e61948539f496097b0b1.svg);
     transform: rotate(180deg);
 }
 .dislike-menu .menu-item .icon-report {
-    background-image: url(//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/8039766….svg);
+    background-image: url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/8039766ff47103b8c50b5cb4becf77d4.svg);
 }
 
 </style>
