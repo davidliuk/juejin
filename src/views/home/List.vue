@@ -5,6 +5,7 @@
         <div class="meta-container">
           <a :href="`https://juejin.cn/user/${ item.article_info.user_id }`" target="_blank" class="user-message">
             <div class="popover-box user-popover">
+              <AuthorInfo class="author-info" :authorObj=" item.author_user_info " />
               {{item.author_user_info.user_name}}
             </div>
           </a>
@@ -72,12 +73,26 @@
                 </span>
               </span>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" @click="isActive=!isActive">
               <span class="menu-icon icon-block-tag"></span>
               <span class="menu-text">屏蔽标签</span>
-              <span class="menu-icon icon-arrow"></span>
+              <span class="menu-icon icon-arrow" :class="{ active: isActive }"></span>
+              <!-- <span class="menu-icon icon-arrow "></span> -->
 
             </div>
+            <!-- <div class="tags-row">
+              <div class="tag-list">
+                <span class="tag-item">
+                  {{ item.category_info.first_category_name }}
+                </span>
+                <span class="tag-item">
+                  {{ item.category_info.second_category_name }}
+                </span>
+              </div> 
+              <button disabled="disabled" class="btn-block-tag">
+                确定屏蔽
+              </button>
+            </div> -->
             <div class="menu-item">
               <span class="menu-icon icon-report"></span>
               <span class="menu-text">举报</span>
@@ -95,9 +110,10 @@ import { ref } from 'vue'
 // import { defineComponent } from 'vue'
 import { getCategories, getArticleById, getArticles, getCommentsByArticleId } from '../../fake-api'
 import { onMounted, onUnmounted } from "vue";
-
+import AuthorInfo from './AuthorInfo.vue'
 export default {
   name: 'list',
+  components: { AuthorInfo },
   setup() {
     //滚动事件处理函数
     function scrollHandle() {
@@ -139,15 +155,24 @@ export default {
         });
       }
     }
-
+    let isActive = true; //控制屏蔽标签下拉激活
     return {
       datas, //返回出去，以便在template里使用
+      isActive,
+      AuthorInfo,
     };
   },
 }
 </script>
     
 <style scoped>
+.author-info {
+  display: none;
+}
+.user-popover:hover .author-info {
+  display:block;
+}
+
 .list-item {
   height:140px;
   }
@@ -521,4 +546,56 @@ svg {
     background-image: url(https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/8039766ff47103b8c50b5cb4becf77d4.svg);
 }
 
+.dislike-menu .menu-item .icon-arrow.active {
+    transform: none;
+}
+.dislike-menu .tags-row {
+    padding: 0.333rem 1rem 1rem;
+}
+.dislike-menu .tags-row .tag-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+.dislike-menu .tags-row .tag-list .tag-item {
+    color: #515767;
+    box-sizing: border-box;
+    font-size: 1rem;
+    height: 2rem;
+    max-width: 15.67rem;
+    padding: 0 0.667rem;
+    border-radius: 4px;
+    background-color: #f7f8fa;
+    margin-bottom: 0.667rem;
+    line-height: 2rem;
+    border: 1px solid #f7f8fa;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+}
+.dislike-menu .tags-row .btn-block-tag:disabled {
+    background: #abcdff;
+    cursor: not-allowed;
+}
+.dislike-menu .tags-row .btn-block-tag {
+    background: #1e80ff;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    line-height: 28px;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 0.333rem;
+    font-size: 12px;
+}
 </style>
