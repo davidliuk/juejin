@@ -7,6 +7,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AButton: typeof import('@arco-design/web-vue')['Button']
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     AppSideBar: typeof import('./src/components/AppSideBar.vue')['default']
     AppTopNav: typeof import('./src/components/AppTopNav.vue')['default']
