@@ -7,12 +7,13 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    AButton: typeof import('@arco-design/web-vue')['Button']
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     AppSideBar: typeof import('./src/components/AppSideBar.vue')['default']
     AppTopNav: typeof import('./src/components/AppTopNav.vue')['default']
+    ASkeleton: typeof import('@arco-design/web-vue')['Skeleton']
+    ASkeletonLine: typeof import('@arco-design/web-vue')['SkeletonLine']
+    ASpace: typeof import('@arco-design/web-vue')['Space']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    NewArticle: typeof import('./src/components/NewArticle.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
