@@ -1,5 +1,5 @@
 <template>
-  <nav>顶部通栏综合等一直吸附在顶部</nav>
+  <!-- <nav>顶部通栏综合等一直吸附在顶部</nav> -->
   <AppTopNav />
   <!--  <header>头部掘金图标</header>-->
   <!--  <h1>test</h1>-->
@@ -14,7 +14,6 @@
       <!-- <Catalog :catalog-data="catalogData"></Catalog> -->
     </div>
   </main>
-  <!-- <footer>底部</footer> -->
 </template>
 
 <script lang="ts">

@@ -73,14 +73,14 @@
                 </span>
               </span>
             </div>
-            <div class="menu-item" @click="isActive.value =!isActive.value">
+            <div class="menu-item" @click="isActive =!isActive" :class="{ active: isActive }">
               <span class="menu-icon icon-block-tag"></span>
               <span class="menu-text">屏蔽标签</span>
               <span class="menu-icon icon-arrow" :class="{ active: isActive }"></span>
               <!-- <span class="menu-icon icon-arrow "></span> -->
 
             </div>
-            <!-- <div class="tags-row">
+            <div class="tags-row">
               <div class="tag-list">
                 <span class="tag-item">
                   {{ item.category_info.first_category_name }}
@@ -88,11 +88,11 @@
                 <span class="tag-item">
                   {{ item.category_info.second_category_name }}
                 </span>
-              </div> 
+              </div>
               <button disabled="disabled" class="btn-block-tag">
                 确定屏蔽
               </button>
-            </div> -->
+            </div>
             <div class="menu-item">
               <span class="menu-icon icon-report"></span>
               <span class="menu-text">举报</span>
@@ -155,7 +155,7 @@ export default {
         });
       }
     }
-    let isActive = ref(true); //控制屏蔽标签下拉激活
+    let isActive = ref(false); //控制屏蔽标签下拉激活
     return {
       datas, //返回出去，以便在template里使用
       isActive,
@@ -597,5 +597,11 @@ svg {
     padding: 0;
     margin-top: 0.333rem;
     font-size: 12px;
+}
+.menu-item.active + .tags-row {
+  display: block;
+}
+.menu-item + .tags-row {
+  display:none;
 }
 </style>
