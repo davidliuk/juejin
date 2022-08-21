@@ -5,6 +5,7 @@ const Layout = () => import("../views/Layout.vue");
 // const Home = () => import('@/views/home')
 const Home = () => import("../views/home/index.vue");
 const Article = () => import("../views/post/Article.vue");
+const NewArticle = () => import("../views/post/NewArticle.vue")
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: "/post", 
     component: Article,
+  },
+  {
+    path: "/post/new",
+    component: NewArticle,
   },
 ];
 
