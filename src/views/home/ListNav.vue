@@ -71,5 +71,8 @@ a {
     cursor: pointer;
     color: #909090;
 }
+li {
+  list-style: none;
+}
 </style>
     
