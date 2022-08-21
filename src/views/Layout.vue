@@ -40,7 +40,7 @@ body {
   position: relative;
   width: 960px;
   margin: 0 auto;
-  margin-top: 5.67rem;
+  margin-top: 100px;
   .left-column {
     width: 700px;
   }

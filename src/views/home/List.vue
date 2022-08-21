@@ -1,108 +1,123 @@
 <template>
   <div class="list-item">
-    <li class="item" v-for="item in datas" :key="item.ID">
-      <div class="entry" style="margin-bottom: 0px;">
-        <div class="meta-container">
-          <a :href="`https://juejin.cn/user/${ item.article_info.user_id }`" target="_blank" class="user-message">
-            <div class="popover-box user-popover">
-              <AuthorInfo class="author-info" :authorObj=" item.author_user_info " />
-              {{item.author_user_info.user_name}}
-            </div>
-          </a>
-          <div class="date">
-            {{`${Math.floor(item.article_info.ctime / 1000 /3600 / 24)}天前`}}
-          </div>
-          <div class="tag_list">
-            <a :href="`https://juejin.cn/tag/${ item.category_info.first_category_name }`" target="_blank" class="tag">
-              {{item.category_info.first_category_name}}
-            </a>
-            <a :href="`https://juejin.cn/tag/${ item.category_info.second_category_name }`" target="_blank" class="tag">
-              {{item.category_info.second_category_name}}
-            </a>
-          </div>
-        </div>
-        <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
-          <div class="content-main">
-            <div class="title-row">
-              <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" class="title">
-                {{ item.article_info.title }}
-              </a>
-            </div>
-            <div class="abstract">
-              <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" >
-                <div>
-                {{ item.article_info.brief_content }}
+    <div style="position: relative;height: 100px;">
+      <Transition name="fade">
+        <!-- <ul v-if="false" class="article-list"> -->
+        <ul v-if="datas.length" class="article-list">
+          <li class="item" v-for="item in datas" :key="item.ID">
+            <div class="entry" style="margin-bottom: 0px;">
+              <div class="meta-container">
+                <a :href="`https://juejin.cn/user/${ item.article_info.user_id }`" target="_blank" class="user-message">
+                  <div class="popover-box user-popover">
+                    <AuthorInfo class="author-info" :authorObj=" item.author_user_info " />
+                    {{item.author_user_info.user_name}}
+                  </div>
+                </a>
+                <div class="date">
+                  {{`${Math.floor(item.article_info.ctime / 1000 /3600 / 24)}天前`}}
                 </div>
-              </a>
-            </div>
-            <ul class="action-list jh-timeline-action-area">
-              <li class="item view">
-                <i></i>
-                <span>{{ item.article_info.view_count }}</span>
-              </li>
-              <li class="item like">
-                <i></i>
-                <span>{{ item.article_info.digg_count }}</span>
-              </li>
-              <li class="item comment">
-                <i></i>
-                <span>{{ item.article_info.comment_count }}</span>
-              </li>
-            </ul>
-          </div>
-          <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" >
-            <img :src="item.article_info.cover_image" alt="HTTP/3，它来了" class="lazy thumb" loading="lazy" style="">
-          </a>
-        </div>
-        <div class="dislike-button">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-close">
-            <path d="M1.70538 11.7191C1.52399 11.899 1.22992 11.899 1.04853 11.7191L1.03125 11.7019C0.849866 11.522 0.84987 11.2302 1.03125 11.0502L10.2956 1.85884C10.477 1.67889 10.7711 1.67889 10.9525 1.85885L10.9697 1.876C11.1511 2.05596 11.1511 2.34773 10.9697 2.52769L1.70538 11.7191Z"></path>
-            <path d="M1.0828 2.48943C0.903312 2.30758 0.904276 2.01369 1.08495 1.83302L1.10216 1.8158C1.28284 1.63513 1.5748 1.63609 1.75428 1.81794L10.9104 11.0949C11.0898 11.2767 11.0889 11.5706 10.9082 11.7513L10.891 11.7685C10.7103 11.9492 10.4183 11.9482 10.2389 11.7664L1.0828 2.48943Z"></path>
-          </svg>
-          <div class="dislike-menu">
-            <div class="menu-item">
-              <span class="menu-icon icon-dislike"></span>
-              <span class="menu-text">不感兴趣</span>
-            </div>
-            <div class="menu-item">
-              <span class="menu-icon icon-block-user"></span>
-              <span class="tooltip">
-                <div class="byte-tooltip byte-tooltip--dark" style="display: none;">屏蔽作者：{{item.author_user_info.user_name}}</div>
-                <span class="byte-tooltip__wrapper">
-                  <span class="menu-text">屏蔽作者：{{item.author_user_info.user_name}}</span>
-                </span>
-              </span>
-            </div>
-            <div class="menu-item" @click="isActive =!isActive" :class="{ active: isActive }">
-              <span class="menu-icon icon-block-tag"></span>
-              <span class="menu-text">屏蔽标签</span>
-              <span class="menu-icon icon-arrow" :class="{ active: isActive }"></span>
-              <!-- <span class="menu-icon icon-arrow "></span> -->
-
-            </div>
-            <div class="tags-row">
-              <div class="tag-list">
-                <span class="tag-item">
-                  {{ item.category_info.first_category_name }}
-                </span>
-                <span class="tag-item">
-                  {{ item.category_info.second_category_name }}
-                </span>
+                <div class="tag_list">
+                  <a :href="`https://juejin.cn/tag/${ item.category_info.first_category_name }`" target="_blank" class="tag">
+                    {{item.category_info.first_category_name}}
+                  </a>
+                  <a :href="`https://juejin.cn/tag/${ item.category_info.second_category_name }`" target="_blank" class="tag">
+                    {{item.category_info.second_category_name}}
+                  </a>
+                </div>
               </div>
-              <button disabled="disabled" class="btn-block-tag">
-                确定屏蔽
-              </button>
-            </div>
-            <div class="menu-item">
-              <span class="menu-icon icon-report"></span>
-              <span class="menu-text">举报</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </li>
-  </div>
+              <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
+                <div class="content-main">
+                  <div class="title-row">
+                    <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" class="title">
+                      {{ item.article_info.title }}
+                    </a>
+                  </div>
+                  <div class="abstract">
+                    <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" >
+                      <div>
+                      {{ item.article_info.brief_content }}
+                      </div>
+                    </a>
+                  </div>
+                  <ul class="action-list jh-timeline-action-area">
+                    <li class="item view">
+                      <i></i>
+                      <span>{{ item.article_info.view_count }}</span>
+                    </li>
+                    <li class="item like">
+                      <i></i>
+                      <span>{{ item.article_info.digg_count }}</span>
+                    </li>
+                    <li class="item comment">
+                      <i></i>
+                      <span>{{ item.article_info.comment_count }}</span>
+                    </li>
+                  </ul>
+                </div>
+                <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" >
+                  <img :src="item.article_info.cover_image" alt="HTTP/3，它来了" class="lazy thumb" loading="lazy" style="">
+                </a>
+              </div>
+              <div class="dislike-button">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-close">
+                  <path d="M1.70538 11.7191C1.52399 11.899 1.22992 11.899 1.04853 11.7191L1.03125 11.7019C0.849866 11.522 0.84987 11.2302 1.03125 11.0502L10.2956 1.85884C10.477 1.67889 10.7711 1.67889 10.9525 1.85885L10.9697 1.876C11.1511 2.05596 11.1511 2.34773 10.9697 2.52769L1.70538 11.7191Z"></path>
+                  <path d="M1.0828 2.48943C0.903312 2.30758 0.904276 2.01369 1.08495 1.83302L1.10216 1.8158C1.28284 1.63513 1.5748 1.63609 1.75428 1.81794L10.9104 11.0949C11.0898 11.2767 11.0889 11.5706 10.9082 11.7513L10.891 11.7685C10.7103 11.9492 10.4183 11.9482 10.2389 11.7664L1.0828 2.48943Z"></path>
+                </svg>
+                <div class="dislike-menu">
+                  <div class="menu-item">
+                    <span class="menu-icon icon-dislike"></span>
+                    <span class="menu-text">不感兴趣</span>
+                  </div>
+                  <div class="menu-item">
+                    <span class="menu-icon icon-block-user"></span>
+                    <span class="tooltip">
+                      <div class="byte-tooltip byte-tooltip--dark" style="display: none;">屏蔽作者：{{item.author_user_info.user_name}}</div>
+                      <span class="byte-tooltip__wrapper">
+                        <span class="menu-text">屏蔽作者：{{item.author_user_info.user_name}}</span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="menu-item" @click="isActive =!isActive" :class="{ active: isActive }">
+                    <span class="menu-icon icon-block-tag"></span>
+                    <span class="menu-text">屏蔽标签</span>
+                    <span class="menu-icon icon-arrow" :class="{ active: isActive }"></span>
+                    <!-- <span class="menu-icon icon-arrow "></span> -->
 
+                  </div>
+                  <div class="tags-row">
+                    <div class="tag-list">
+                      <span class="tag-item">
+                        {{ item.category_info.first_category_name }}
+                      </span>
+                      <span class="tag-item">
+                        {{ item.category_info.second_category_name }}
+                      </span>
+                    </div>
+                    <button disabled="disabled" class="btn-block-tag">
+                      确定屏蔽
+                    </button>
+                  </div>
+                  <div class="menu-item">
+                    <span class="menu-icon icon-report"></span>
+                    <span class="menu-text">举报</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+        <div v-else class="skeleton-item">
+            <a-skeleton >
+              <a-space direction="vertical" :style="{width:'80%'}" size="large">
+                <a-skeleton :animation="animation">
+                  <a-skeleton-line :rows="3" />
+                </a-skeleton>
+              </a-space>
+            </a-skeleton>
+        </div>
+      </Transition>
+    </div>
+  </div>
 </template>
     
 <script lang='ts'>
@@ -116,6 +131,7 @@ export default {
   components: { AuthorInfo },
   setup() {
     //滚动事件处理函数
+    const animation = ref(true);
     function scrollHandle() {
       // console.log('滚了');
       const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -160,12 +176,37 @@ export default {
       datas, //返回出去，以便在template里使用
       isActive,
       AuthorInfo,
+      animation,
     };
   },
 }
 </script>
     
-<style scoped>
+<style scoped lang="less">
+li {
+  list-style: none;
+}
+.fade{
+  &-leave {
+    &-active {
+      position: absolute;
+      width: 100%;
+      transition: opacity .1s .1s;
+      z-index: 1;
+    }
+    &-to {
+      opacity: 0;
+    }
+  }
+}
+
+.skeleton-item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 20%;
+  left: 10%;
+}
 .author-info {
   display: none;
 }
@@ -397,6 +438,9 @@ div {
 }
 .entry .dislike-button {
     top: 1.333rem;
+}
+.entry {
+  background-color: #fff;
 }
 .entry:hover {
   background-color: rgb(250, 250, 250);
