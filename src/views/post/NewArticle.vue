@@ -2,7 +2,7 @@
   <h1>
     写文章
   </h1>
-  <form action="/api/user/post/new" method="post">
+  <form action="/api/user/post/new" target="_blank" method="post">
     <div class="form-group">
       <label>标题</label>
       <input type="text" name="title">

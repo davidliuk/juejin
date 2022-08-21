@@ -7,6 +7,7 @@ const Home = () => import("../views/home/index.vue");
 const Article = () => import("../views/post/Article.vue");
 const NewArticle = () => import("../views/post/NewArticle.vue")
 const Register = () => import("../views/home/Register.vue")
+const Login = () => import("../views/home/Login.vue")
 
 const routes = [
   {
@@ -25,6 +26,10 @@ const routes = [
   {
     path: "/register",
     component: Register,
+  },
+  {
+    path: "/login",
+    component: Login,
   },
 ];
 

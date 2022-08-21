@@ -1,6 +1,6 @@
 <template>
-  <h1>欢迎来到"掘金"！</h1>
-  <form action="/api/auth/register" target="_blank" method="post">
+  <h1>登录</h1>
+  <form action="api/auth/login" target="_blank" method="post">
     <div class="form-group">
       <label>用户名</label>
       <input type="text" name="username">
@@ -9,10 +9,7 @@
       <label>密码</label>
       <input type="password" name="password">
     </div>
-    <div class="form-group">
-      <label>确认密码</label>
-      <input type="password" name="confirm-password">
-    </div>
+    <input type="hidden" value="http://localhost:5173/#/">
     <div class="form-group">
       <button type="submit">提交</button>
     </div>
@@ -21,7 +18,7 @@
 
 <script>
 export default {
-  name: "Register"
+  name: "Login"
 }
 </script>
 
@@ -33,6 +30,7 @@ form {
 
   .form-group {
     margin-bottom: 1rem;
+
     label {
       display: block;
       text-align: left;
@@ -66,4 +64,5 @@ form {
     }
   }
 }
+
 </style>
