@@ -73,7 +73,7 @@
                 </span>
               </span>
             </div>
-            <div class="menu-item" @click="isActive=!isActive">
+            <div class="menu-item" @click="isActive.value =!isActive.value">
               <span class="menu-icon icon-block-tag"></span>
               <span class="menu-text">屏蔽标签</span>
               <span class="menu-icon icon-arrow" :class="{ active: isActive }"></span>
@@ -150,7 +150,7 @@ export default {
 
         getArticles().then((res) => {
           datas.value = [...datas.value, ...res.data.articles];
-          console.log(datas.value);
+          // console.log(datas.value);
           readyForLoad = true; //加载完了才"开锁"，允许再次触发
         });
       }

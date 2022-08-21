@@ -1,7 +1,7 @@
 <template>
   <nav class="app-top-nav">
-    <div class="container">
-      <div class="container-1">
+    <div class="container" :class="{ visible:isVisible }" >
+      <div class="container-1" >
         <div class="logo">
           <a href="">
             <img class="logo-img"
@@ -116,6 +116,8 @@
 
 <script>
 import {IconUser} from '@arco-design/web-vue/es/icon';
+import { ref } from 'vue'
+import { onMounted, onUnmounted } from "vue";
 
 export default {
   name: 'AppTopNav',
@@ -155,13 +157,62 @@ export default {
         };
       });
     }
+  },
+  // 处理导航栏上拉隐藏，下拉出现的效果
+  setup() {
+    //滚动事件处理函数
+  let isVisible = ref(true);
+  let oldValue = 0;
+  function scrollHandle() {
+    // console.log('滚了');
+    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    console.log( scrollTop - oldValue );
+    if( scrollTop - oldValue > 0 ) {
+      // 表明下拉，需要隐藏
+      isVisible.value = false
+    }else {
+      // 需要展示
+      isVisible.value = true
+
+    }
+    oldValue = scrollTop;
   }
+
+  onMounted(() => {
+    //组件挂载时，添加scroll监听
+    window.addEventListener("scroll", scrollHandle, false);
+    // console.log('onMounted');
+  });
+  onUnmounted(() => {
+    //组件卸载时，停止监听
+    window.removeEventListener("scroll", scrollHandle, false);
+  });
+  return {
+    isVisible,
+  };
+},
 };
 </script>
 
 <style lang="less" scoped>
 * {
   box-sizing: border-box;
+}
+.app-top-nav .container.visible {
+  transform: translateZ(0);
+  background-color: #fff;
+}
+.app-top-nav .container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: all .2s;
+  transform: translate3d(0,-60px,0);
+  background-color: #fff;
+}
+.app-top-nav .container .container-1 {
+  border-bottom: 1px solid hsla(0,0%,59.2%,.1);
 }
 
 .app-top-nav {
@@ -500,7 +551,7 @@ export default {
     line-height: 1;
     left: 0;
     background-color: #fff;
-    //position: fixed;
+    //
     //display: flex;
     //flex-direction: row;
     //align-items: center;
