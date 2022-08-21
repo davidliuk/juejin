@@ -19,7 +19,8 @@
           </svg>
           <span class="title">
           <!-- 需要根据时间进行输出 -->
-          下午好！晚上好！早上好！
+          {{ helloWord }}好！
+          <!-- 下午晚上早上好！ -->
           </span>
         </div>
         <button class="signin-btn"><span class="btn-text" data-v-68373e0a="">去签到</span></button>
@@ -261,15 +262,44 @@
 </template>
 
 <script>
+import { onMounted, ref } from 'vue'
 export default {
   name: "Aside",
   props: {},
+  setup() {
+    let helloWord = ref('helloWord');
+    onMounted(() => {
+      helloTime()
+    });
+    function helloTime(){
+      let t = new Date().getHours();
+      if(t < 6){
+        helloWord.value = '凌晨'
+      }else if( t < 11){
+        helloWord.value = '早上'
+      }else if( t < 13){
+        helloWord.value = '中午'
+      }else if( t < 19){
+        helloWord.value = '下午'
+      }else if( t < 24){
+        helloWord.value = '晚上'
+      }
+      // return helloWord;
+    }
+    return {
+      helloWord,
+    }
+  },
+  
   data() {
-    return {};
+    return {
+      // helloWord
+    };
   },
   mounted() {
   },
-  methods: {},
+  methods: {
+  },
 }
 </script>
 

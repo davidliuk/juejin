@@ -155,7 +155,7 @@ export default {
         });
       }
     }
-    let isActive = true; //控制屏蔽标签下拉激活
+    let isActive = ref(true); //控制屏蔽标签下拉激活
     return {
       datas, //返回出去，以便在template里使用
       isActive,
