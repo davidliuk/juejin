@@ -3,8 +3,8 @@
   <AppTopNav />
   <div class="main-content">
     <div class="left-column">
-      <div class="title">标题</div>
-      <AuthorMiniInfo></AuthorMiniInfo>
+      <div class="title">{{ height.height }}</div>
+      <AuthorInfo></AuthorInfo>
       <Content></Content>
     </div>
     <div class="right-column">
@@ -15,8 +15,12 @@
 
 <script lang="ts" setup>
 import Content from "./Content.vue";
-import AuthorMiniInfo from "./AuthorMiniInfo.vue";
+import AuthorInfo from "./AuthorInfo.vue";
 import Aside from "./Aside.vue";
+import { useHeightStore } from "@/store/article";
+import { ref } from "vue";
+
+let height = useHeightStore();
 
 </script>
 

@@ -1,6 +1,6 @@
 <!-- 侧边栏 -->
 <template>
-  <div class="sidebar-box" :style="{ height: height }">
+  <div class="sidebar-box" :style="{ height: height.height }">
     <!-- 个人信息 -->
     <div class="info-box">
       <div class="up-box">
@@ -107,32 +107,40 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import Catalog from "./Catalog.vue";
-export default {
-  name: "Aside",
-  data() {
-    return {
-      relevantArticles: [],
-      userinfo: {},
-      height: 100,
-    };
-  },
-  mounted() {
-    this.getRelevantArticles();
-    this.getUserInfo();
-    this.height =
-      document.querySelector(".left-column").getBoundingClientRect().height +
-      "px";
-  },
-  methods: {
-    // 将 2141576 转换为 2,141,576
-    toLocale(number) {
+import axios from 'axios'
+import { useHeightStore } from "@/store/article";
+
+let relevantArticles = []
+let userinfo = {}
+let done = false
+
+let height = useHeightStore();
+console.log(height)
+console.log("_________")
+
+
+    // this.height = document.querySelector(".left-column").getBoundingClientRect().height + "px";
+    // let url = "https://juejin-1309929060.cos.ap-nanjing.myqcloud.com/React.md";
+    // axios.get(url)
+    //   .then((response) => {
+    //     if (response.data) {
+    //       let innerHTML = marked(response.data); //解析markdown文件到div显示
+    //       this.height = innerHTML.getBoundingClientRect().height + "px";
+    //       console.log(this.height)
+    //     }
+    //   })
+    //   .catch(function (err) {
+    //   })
+
+
+    function toLocale(number) {
       if (number == null) return "0";
       return number.toLocaleString()
-    },
-    getRelevantArticles() {
-      this.relevantArticles = [
+    }
+    function getRelevantArticles() {
+      relevantArticles = [
         {
           title: "TypeScript中interface与type的区别",
           thumbsUpNumber: 32,
@@ -158,10 +166,11 @@ export default {
           thumbsUpNumber: 9031,
           commentNumber: 474,
         },
-      ];
-    },
-    getUserInfo() {
-      this.userinfo = {
+      ]
+    }
+
+    function getUserInfo() {
+      userinfo = {
         avatar:
           "https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image",
         username: "David",
@@ -171,11 +180,12 @@ export default {
         rankNumber: 15,
         thumbsUpNumber: 22522,
         viewedNumber: 2141576,
-      };
-    },
-  },
-  components: { Catalog },
-};
+      }
+    }
+
+getRelevantArticles();
+getUserInfo();
+
 </script>
 
 <style scoped lang="less">
@@ -301,6 +311,6 @@ export default {
 
 .catalog {
   position: sticky;
-  top: 0;
+  top: 1.767rem;
 }
 </style>

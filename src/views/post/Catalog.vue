@@ -32,8 +32,10 @@ export default {
   },
   mounted() {
     let passage = document.querySelector(".left-column");
-    console.log(passage);
-    let headers = Array.from(passage.querySelectorAll("h1, h2")); //获取所有标签为h1，h2的节点
+    if (passage == null) return;
+
+    this.catalogData = [];
+    let headers = Array.from(passage.querySelectorAll("h1, h2, h3")); //获取所有标签为h1，h2的节点
     headers.forEach((item, index) => {
       this.catalogData.push({
         title: item.innerHTML,
@@ -43,9 +45,7 @@ export default {
         index: index,
       });
     });
-    // console.log(this.catalogData)
     this.allItem = this.catalogData.length;
-
     window.addEventListener("scroll", this.scrollListener);
   },
   beforeDestory() {
@@ -57,7 +57,6 @@ export default {
       const toTopDistance = document
         .getElementById(item.id)
         .getBoundingClientRect().top;
-      console.log(toTopDistance);
       window.scrollTo({
         top: toTopDistance - windowTop,
         behavior: "smooth",
@@ -66,48 +65,55 @@ export default {
       this.scrollListener();
     },
     scrollListener() {
-      //不能一个劲监听
+      // 不监听的情况
       if (this.busy === true) {
         return;
       }
+      let passage = document.querySelector(".left-column");
+      if (passage == null) return;
+
+      let headers = Array.from(passage.querySelectorAll("h1, h2, h3")); //获取所有标签为h1，h2的节点
+      let catalogData = []
+      headers.forEach((item, index) => {
+        catalogData.push({
+          title: item.innerHTML,
+          id: item.id,
+          level: Number.parseInt(item.localName.slice(1)),
+          isActivate: false,
+          index: index,
+        });
+      });
+      if (catalogData.length != this.catalogData.length) {
+        this.catalogData = catalogData
+        this.allItem = this.catalogData.length;
+      }
+
       this.busy = true;
 
-      let passage = document.querySelector(".left-column");
-      // console.log(passage)
-
-      let flag = false; //如果是false，下拖，否则上拖
+      let upDragged = false; //如果是false，下拖，否则上拖
       //先判断是上移了还是下移了
       const newWindowBoundTop = document.body.getBoundingClientRect().top;
       if (this.windowBoundTop > newWindowBoundTop) {
-        //往下拖了
-        console.log("下拖");
-        flag = false;
+        upDragged = false;
       } else {
-        //往上拖了
-        console.log("上拖");
-        flag = true;
+        upDragged = true;
       }
       this.windowBoundTop = newWindowBoundTop;
 
-      let headers = Array.from(passage.querySelectorAll("h1, h2")); //获取所有标签为h1，h2的节点
-      // console.log(headers)
       let allNum = headers.length;
       for (let i = 0; i < allNum; i++) {
-        console.log(headers[i].getBoundingClientRect().top);
         if (
-          headers[i].getBoundingClientRect().top > 110 &&
-          headers[i].getBoundingClientRect().top < 130
+          headers[i].getBoundingClientRect().top > 110
         ) {
-          console.log("1111111111111111111");
           this.catalogData.forEach((item) => (item.isActivate = false));
           let indexOfActivate = i;
-          if (flag) {
-            //往上托，如果是0的话，那也只能是0
+          if (upDragged) {
             indexOfActivate = i === 0 ? 0 : i - 1;
           }
           // document.getElementsByClassName('el-tabs__active-bar is-right')[0].setAttribute('style', `height: 40px; transform: translateY(${actualHighlightTitle*40}px);`);
           this.catalogData[indexOfActivate].isActivate = true;
           this.currItem = indexOfActivate;
+          console.log(this.currItem)
           break;
         }
       }
@@ -179,6 +185,10 @@ export default {
       &.level-2 .text {
         color: #333;
         padding-left: 30px;
+      }
+      &.level-3 .text {
+        color: gray;
+        padding-left: 45px;
       }
 
       &.activate {

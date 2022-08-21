@@ -235,6 +235,7 @@ export default {
     //flex-wrap: wrap;
     justify-content: center;
     border-bottom: 0.5px solid #F1F1F1;
+    align-items: center;
 
     .container-1 {
       height: 60px;
@@ -393,15 +394,14 @@ export default {
               border-radius: 0 3px 3px 0;
               box-sizing: border-box;
 
-
-              .triangle {
-                //width: 10px;
-                //height: 10px;
-                //border: 5px solid #1E80FF;
-                //border-top-color: #FFF;
-                //position: relative;
-                //top: 5px;
-              }
+              // .triangle {
+              //   //width: 10px;
+              //   //height: 10px;
+              //   //border: 5px solid #1E80FF;
+              //   //border-top-color: #FFF;
+              //   //position: relative;
+              //   //top: 5px;
+              // }
             }
           }
 

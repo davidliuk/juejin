@@ -4,16 +4,34 @@
 
 <script lang="ts">
 import { marked } from "marked";
-import content from "../../fake-api/article";
+// import content from "../../fake-api/article";
 //highlight
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css"; //样式
+import axios from "axios";
+import { useHeightStore } from "@/store/article";
 
 export default {
   mounted() {
     let mainContent = document.getElementById("content");
     if (mainContent == null) return;
-    mainContent.innerHTML = marked.parse(content);
+    let store = useHeightStore();
+    let url = "https://juejin-1309929060.cos.ap-nanjing.myqcloud.com/React.md";// 读取本地。md文件
+    axios.get(url)
+      .then((response: any) => {
+        if (response.data) {
+          mainContent.innerHTML = marked(response.data); //解析markdown文件到div显示
+          store.height = mainContent.getBoundingClientRect().height + "px";
+          console.log('=============')
+          console.log(store.height)
+        }
+      })
+      .catch(function (err: any) {
+        mainContent.innerHTML = marked( // 找不到文件则显示一个默认错误，相当于404
+          '<h1 class="h1-text">Sorry, this page is under construction</h1>'
+          );
+        })
+    // mainContent.innerHTML = marked.parse(content);
     let blocks = mainContent.querySelectorAll("pre code");
     blocks.forEach((block: any) => {
       hljs.highlightBlock(block);
