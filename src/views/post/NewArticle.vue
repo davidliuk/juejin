@@ -10,7 +10,7 @@
     <div class="form-group">
       <label>分类</label>
       <select name="category">
-        <option v-for="category in ans.category" name="category">{{ category }}</option>
+        <option v-for="category in data.category" name="category">{{ category }}</option>
       </select>
     </div>
     <div class="form-group">
@@ -30,7 +30,7 @@ export default {
   name: "NewArticle",
   data() {
     return {
-      ans: {},
+      data: {},
     };
   },
   created() {
@@ -40,7 +40,7 @@ export default {
         )
         .then((response) => {
           console.log(response)
-          this.ans = response.data
+          this.data = response.data
         });
   },
 }
@@ -64,7 +64,7 @@ form {
     }
 
     input {
-      padding: 0.375rem 0.125rem;
+      padding: 0.375rem 0.75rem;
       display: block;
       width: 100%;
       font-size: 1.2rem;
@@ -79,7 +79,7 @@ form {
     }
 
     select {
-      padding: 0.375rem 0.125rem;
+      padding: 0.375rem 0.75rem;
       width: 100%;
       font-size: 1.2rem;
       line-height: 1.5;
