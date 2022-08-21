@@ -9,11 +9,13 @@
     </div>
     <div class="form-group">
       <label>分类</label>
-      <input type="text" name="category">
+      <select name="category">
+        <option v-for="category in ans.category" name="category">{{ category }}</option>
+      </select>
     </div>
     <div class="form-group">
       <label>内容</label>
-      <input type="text" class="text-body" name="body">
+      <textarea class="text-body" name="body"></textarea>
     </div>
     <div class="form-group">
       <button type="submit">提交</button>
@@ -22,56 +24,86 @@
 </template>
 
 <script>
-// import axios from "axios";
-//
-// export default {
-//   name: "NewArticle",
-//   data() {
-//     return {
-//       post: "",
-//     };
-//   },
-//   created() {
-//     axios
-//         .post(
-//             "/api/user/post",
-//             {'aa': 123},
-//         )
-//         .then((response) => {
-//           console.log(response)
-//           this.post = response.data
-//         });
-//   },
-// }
+import axios from "axios";
+
+export default {
+  name: "NewArticle",
+  data() {
+    return {
+      ans: {},
+    };
+  },
+  created() {
+    axios
+        .post(
+            "/api/user/category",
+        )
+        .then((response) => {
+          console.log(response)
+          this.ans = response.data
+        });
+  },
+}
 </script>
 
 <style scoped lang="less">
 form {
   display: block;
+  margin: 0 auto;
+  width: 80%;
+
   .form-group {
     margin-bottom: 1rem;
     label {
       display: block;
       text-align: left;
-      margin-bottom: 0.5rem;
+      margin: 0 auto 0.5rem;
+      font-size: 1.2rem;
+      width: 100%;
+      box-sizing: border-box;
     }
-    input{
+
+    input {
+      padding: 0.375rem 0.125rem;
       display: block;
       width: 100%;
-      padding: 0.375rem 0.75rem;
-      font-size: 0.9375rem;
+      font-size: 1.2rem;
       line-height: 1.5;
       color: #495057;
       background-color: #fff;
       background-clip: padding-box;
       border: 1px solid #ced4da;
       border-radius: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
-    .text-body{
-      height: 300px;
+
+    select {
+      padding: 0.375rem 0.125rem;
+      width: 100%;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
-    button{
-      float: left;
+
+    .text-body {
+      padding: 0.375rem 0.75rem;
+      font-size: 1.2rem;
+      height: 450px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ced4da;
+      border-radius: 0;
+    }
+
+    button {
+      display: block;
       font-weight: 400;
       text-align: center;
       white-space: nowrap;
