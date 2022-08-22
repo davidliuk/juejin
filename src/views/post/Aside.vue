@@ -109,83 +109,65 @@
 
 <script setup>
 import Catalog from "./Catalog.vue";
-import axios from 'axios'
+import axios from "axios";
 import { useHeightStore } from "@/store/article";
 
-let relevantArticles = []
-let userinfo = {}
-let done = false
+let relevantArticles = [];
+let userinfo = {};
+let done = false;
 
 let height = useHeightStore();
-console.log(height)
-console.log("_________")
 
+function toLocale(number) {
+  if (number == null) return "0";
+  return number.toLocaleString();
+}
+function getRelevantArticles() {
+  relevantArticles = [
+    {
+      title: "TypeScript中interface与type的区别",
+      thumbsUpNumber: 32,
+      commentNumber: 6,
+    },
+    {
+      title: "IOS Charles抓包",
+      thumbsUpNumber: 31,
+      commentNumber: 2,
+    },
+    {
+      title: "超详细的网络抓包神器 tcpdump 使用指南",
+      thumbsUpNumber: 9031,
+      commentNumber: 474,
+    },
+    {
+      title: "前端必会抓包工具",
+      thumbsUpNumber: 556,
+      commentNumber: 29,
+    },
+    {
+      title: "经典八股文",
+      thumbsUpNumber: 9031,
+      commentNumber: 474,
+    },
+  ];
+}
 
-    // this.height = document.querySelector(".left-column").getBoundingClientRect().height + "px";
-    // let url = "https://juejin-1309929060.cos.ap-nanjing.myqcloud.com/React.md";
-    // axios.get(url)
-    //   .then((response) => {
-    //     if (response.data) {
-    //       let innerHTML = marked(response.data); //解析markdown文件到div显示
-    //       this.height = innerHTML.getBoundingClientRect().height + "px";
-    //       console.log(this.height)
-    //     }
-    //   })
-    //   .catch(function (err) {
-    //   })
-
-
-    function toLocale(number) {
-      if (number == null) return "0";
-      return number.toLocaleString()
-    }
-    function getRelevantArticles() {
-      relevantArticles = [
-        {
-          title: "TypeScript中interface与type的区别",
-          thumbsUpNumber: 32,
-          commentNumber: 6,
-        },
-        {
-          title: "IOS Charles抓包",
-          thumbsUpNumber: 31,
-          commentNumber: 2,
-        },
-        {
-          title: "超详细的网络抓包神器 tcpdump 使用指南",
-          thumbsUpNumber: 9031,
-          commentNumber: 474,
-        },
-        {
-          title: "前端必会抓包工具",
-          thumbsUpNumber: 556,
-          commentNumber: 29,
-        },
-        {
-          title: "经典八股文",
-          thumbsUpNumber: 9031,
-          commentNumber: 474,
-        },
-      ]
-    }
-
-    function getUserInfo() {
-      userinfo = {
-        avatar:
-          "https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image",
-        username: "David",
-        levelIcon:
-          "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-7.5da15b8.png",
-        breif: "掘金小队",
-        rankNumber: 15,
-        thumbsUpNumber: 22522,
-        viewedNumber: 2141576,
-      }
-    }
+function getUserInfo() {
+  userinfo = {
+    avatar:
+      "https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image",
+    username: "David",
+    levelIcon:
+      "https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/lv-7.5da15b8.png",
+    breif: "掘金小队",
+    rankNumber: 15,
+    thumbsUpNumber: 22522,
+    viewedNumber: 2141576,
+  };
+}
 
 getRelevantArticles();
 getUserInfo();
-
 </script>
 
 <style scoped lang="less">
@@ -312,5 +294,7 @@ getUserInfo();
 .catalog {
   position: sticky;
   top: 1.767rem;
+  top: 60px; 
+  z-index: 9;
 }
 </style>

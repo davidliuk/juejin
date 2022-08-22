@@ -16,7 +16,7 @@ export default {
     let mainContent = document.getElementById("content");
     if (mainContent == null) return;
     let store = useHeightStore();
-    let url = "https://juejin-1309929060.cos.ap-nanjing.myqcloud.com/React.md";// 读取本地。md文件
+    let url = "https://juejin-1309929060.cos.ap-nanjing.myqcloud.com/React.md";// 读取md文件
     axios.get(url)
       .then((response: any) => {
         if (response.data) {
