@@ -2,14 +2,8 @@
   <header class="list-header">
     <nav role="navigation" class="list-nav">
       <ul class="nav-list left">
-        <li class="nav-item active">
-          <a href="/">推荐</a>
-        </li>
-        <li class="nav-item">
-          <a href="/?sort=newest">最新</a>
-        </li>
-        <li class="nav-item">
-          <a href="/?sort=three_days_hottest">热榜</a>
+        <li v-for="(item,index) in list" :class="['nav-item', currentIndex===index?'active':'']" @click="click(index)">
+          <a href="#">{{ item }}</a>
         </li>
       </ul>
       <div class="dorp-down-area">
@@ -21,15 +15,21 @@
 
 <script lang='ts'>
 // 列表导航栏
-import {defineComponent} from 'vue'
 
-export default defineComponent({
+export default {
   name: 'listNav',
-  setup() {
-    // todo
-    return {}
+  data() {
+    return {
+      list: ['推荐', '最新', '热榜'],
+      currentIndex: 0,
+    }
+  },
+  methods: {
+    click(index) {
+      this.currentIndex = index
+    }
   }
-})
+}
 </script>
 
 <style scoped>
@@ -58,7 +58,7 @@ article, aside, details, figcaption, figure, footer, header, main, menu, nav, se
   line-height: 1;
 }
 
-.nav-list.left{
+.nav-list.left {
   padding: 0 0;
   margin: 0 0;
 }
