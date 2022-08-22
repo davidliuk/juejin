@@ -1,7 +1,7 @@
 <template>
   <nav class="app-top-nav">
-    <div class="container" :class="{ visible:isVisible }" >
-      <div class="container-1" >
+    <div class="container" :class="{ visible:isVisible }">
+      <div class="container-1">
         <div class="logo">
           <a href="">
             <img class="logo-img"
@@ -47,19 +47,23 @@
             <div class="items-box" v-show="isCenterUnfold">
               <div class="item">
                 <img class="icon"
-                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/a0c8073862f04c2925249fd397763fd3.svg" alt=""/>
+                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/a0c8073862f04c2925249fd397763fd3.svg"
+                     alt=""/>
                 <div class="title">
-                  <a href="http://localhost:5173/#/post/new" target="_blank">写文章</a>
+                  <a href="http://localhost:5173/#/post/new" target="_blank"
+                     style="color: #515767 ; font-weight: normal">写文章</a>
                 </div>
               </div>
               <div class="item">
                 <img class="icon"
-                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e5381c85b5939d984a4b0c0edf102122.svg" alt=""/>
+                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e5381c85b5939d984a4b0c0edf102122.svg"
+                     alt=""/>
                 <div class="title">发沸点</div>
               </div>
               <div class="item">
                 <img class="icon"
-                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/01c75d281edffa91cacfb93189c940b4.svg" alt=""/>
+                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/01c75d281edffa91cacfb93189c940b4.svg"
+                     alt=""/>
                 <div class="title">写代码</div>
               </div>
             </div>
@@ -69,7 +73,8 @@
         <!-- 右侧部分 -->
         <div class="member">
           <img class="icon"
-               src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/24127194d5b158d7eaf8f09a256c5d01.svg" alt=""/>
+               src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/24127194d5b158d7eaf8f09a256c5d01.svg"
+               alt=""/>
           <div class="title">会员</div>
         </div>
         <a class="notify" href="#">
@@ -94,8 +99,11 @@
         <!-- 已登录显示 -->
         <li class="avatar">
           <div class>
-            <img src="https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image" alt="旺崽的头像"
-                 class="avatar-img" data-v-248050e4="" data-v-3aafff8a="" data-v-925bf8d6="" loading="lazy">
+            <a href="http://localhost:5173/#/login" target="_blank" style="display: flex">
+              <img src="https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image"
+                   alt="旺崽的头像"
+                   class="avatar-img" data-v-248050e4="" data-v-3aafff8a="" data-v-925bf8d6="" loading="lazy">
+            </a>
           </div>
         </li>
       </div>
@@ -118,8 +126,8 @@
 
 <script lang="ts">
 import {IconUser} from '@arco-design/web-vue/es/icon';
-import { ref } from 'vue'
-import { onMounted, onUnmounted } from "vue";
+import {ref} from 'vue'
+import {onMounted, onUnmounted} from "vue";
 
 export default {
   name: 'AppTopNav',
@@ -163,29 +171,30 @@ export default {
   // 处理导航栏上拉隐藏，下拉出现的效果
   setup() {
     //滚动事件处理函数
-  let isVisible = ref(true);
-  let oldValue = 0;
-  function scrollHandle() {
-    // console.log('滚了');
-    const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    console.log( scrollTop - oldValue );
-    isVisible.value = scrollTop - oldValue <= 0;
-    oldValue = scrollTop;
-  }
+    let isVisible = ref(true);
+    let oldValue = 0;
 
-  onMounted(() => {
-    //组件挂载时，添加scroll监听
-    window.addEventListener("scroll", scrollHandle, false);
-    // console.log('onMounted');
-  });
-  onUnmounted(() => {
-    //组件卸载时，停止监听
-    window.removeEventListener("scroll", scrollHandle, false);
-  });
-  return {
-    isVisible,
-  };
-},
+    function scrollHandle() {
+      // console.log('滚了');
+      const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+      console.log(scrollTop - oldValue);
+      isVisible.value = scrollTop - oldValue <= 0;
+      oldValue = scrollTop;
+    }
+
+    onMounted(() => {
+      //组件挂载时，添加scroll监听
+      window.addEventListener("scroll", scrollHandle, false);
+      // console.log('onMounted');
+    });
+    onUnmounted(() => {
+      //组件卸载时，停止监听
+      window.removeEventListener("scroll", scrollHandle, false);
+    });
+    return {
+      isVisible,
+    };
+  },
 };
 </script>
 
@@ -193,21 +202,24 @@ export default {
 * {
   box-sizing: border-box;
 }
+
 .app-top-nav .container.visible {
   transform: translateZ(0);
   background-color: #fff;
 }
+
 .app-top-nav .container {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   transition: all .2s;
-  transform: translate3d(0,-60px,0);
+  transform: translate3d(0, -60px, 0);
   background-color: #fff;
 }
+
 .app-top-nav .container .container-1 {
-  border-bottom: 1px solid hsla(0,0%,59.2%,.1);
+  border-bottom: 1px solid hsla(0, 0%, 59.2%, .1);
 }
 
 .app-top-nav {
@@ -553,18 +565,18 @@ export default {
     //height: 45px;
     justify-content: center;
 
-    .nav-item-b{
+    .nav-item-b {
       color: #71777C;
       padding: 0 1rem 0 0;
       font-size: 1.16rem;
       display: flex;
     }
 
-    .active{
+    .active {
       color: #1E80FF;
     }
 
-    .right{
+    .right {
       //float: right;
       margin-left: 250px;
       //position: absolute;
