@@ -47,17 +47,19 @@
             <div class="items-box" v-show="isCenterUnfold">
               <div class="item">
                 <img class="icon"
-                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/a0c8073862f04c2925249fd397763fd3.svg"/>
-                <div class="title">写文章</div>
+                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/a0c8073862f04c2925249fd397763fd3.svg" alt=""/>
+                <div class="title">
+                  <a href="http://localhost:5173/#/post/new" target="_blank">写文章</a>
+                </div>
               </div>
               <div class="item">
                 <img class="icon"
-                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e5381c85b5939d984a4b0c0edf102122.svg"/>
+                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e5381c85b5939d984a4b0c0edf102122.svg" alt=""/>
                 <div class="title">发沸点</div>
               </div>
               <div class="item">
                 <img class="icon"
-                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/01c75d281edffa91cacfb93189c940b4.svg"/>
+                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/01c75d281edffa91cacfb93189c940b4.svg" alt=""/>
                 <div class="title">写代码</div>
               </div>
             </div>
@@ -67,7 +69,7 @@
         <!-- 右侧部分 -->
         <div class="member">
           <img class="icon"
-               src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/24127194d5b158d7eaf8f09a256c5d01.svg">
+               src="https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/24127194d5b158d7eaf8f09a256c5d01.svg" alt=""/>
           <div class="title">会员</div>
         </div>
         <a class="notify" href="#">
@@ -167,14 +169,7 @@ export default {
     // console.log('滚了');
     const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
     console.log( scrollTop - oldValue );
-    if( scrollTop - oldValue > 0 ) {
-      // 表明下拉，需要隐藏
-      isVisible.value = false
-    }else {
-      // 需要展示
-      isVisible.value = true
-
-    }
+    isVisible.value = scrollTop - oldValue <= 0;
     oldValue = scrollTop;
   }
 
