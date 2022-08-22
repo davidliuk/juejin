@@ -20,6 +20,7 @@
 </template>
     
 <script lang='ts'>
+// 列表导航栏
 import { defineComponent } from 'vue'
     
 export default defineComponent({

@@ -22,6 +22,7 @@ import AppTopNav from "@/components/AppTopNav.vue";
 import AppSideBar from "@/components/AppSideBar.vue";
 
 export default {
+  // 总体页面布局
   name: "Layout",
   components: {
     AppTopNav,

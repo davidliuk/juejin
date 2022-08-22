@@ -1,4 +1,5 @@
 <script lang="ts" >
+// 首页列表布局，需要的组件包括列表和列表导航
 import { defineComponent } from 'vue';
 import ListNav from './ListNav.vue'
 import List from './List.vue'
@@ -15,9 +16,7 @@ export default defineComponent ({
   <nav class="list-nav">
     <!-- <ul class="nav-list left">
       <li class="nav-item">
-      推荐
-      最新
-      热榜
+      推荐 最新 热榜
       </li>
     </ul> -->
     <ListNav/>
