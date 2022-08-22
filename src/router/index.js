@@ -8,6 +8,7 @@ const Article = () => import("../views/post/Article.vue");
 const NewArticle = () => import("../views/post/NewArticle.vue")
 const Register = () => import("../views/home/Register.vue")
 const Login = () => import("../views/home/Login.vue")
+const ShowPost = () => import("../views/post/ShowPost.vue")
 
 const routes = [
   {
@@ -30,6 +31,10 @@ const routes = [
   {
     path: "/login",
     component: Login,
+  },
+  {
+    path: "/post/show",
+    component: ShowPost,
   },
 ];
 
