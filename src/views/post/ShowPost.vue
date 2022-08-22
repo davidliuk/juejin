@@ -15,17 +15,17 @@
           {{ key }}
         </td>
         <td>
-          <a href="#">{{ val[0] }}</a>
+          <a href="http://localhost:5173/#/post">{{ val[0] }}</a>
         </td>
         <td>
           {{ val[1] }}
         </td>
         <td>
-          {{ val[2].substring(0, 25)+'...' }}
+          {{ val[2].substring(0, 25) + '...' }}
         </td>
         <td>
-          <form class="inline" method="post">
-            <button>删除</button>
+          <form class="inline" :action="'/api/user/post/'+key.toString()+'/delete'" method="post" target="_blank">
+            <button onclick="return confirm('确认删除？')">删除</button>
           </form>
         </td>
       </tr>
@@ -72,10 +72,12 @@ export default {
       padding: 0.75rem;
       vertical-align: top;
       border-top: 1px solid #dee2e6;
-      a{
+
+      a {
         color: #213547;
       }
-      a:hover{
+
+      a:hover {
         color: #fff;
       }
     }
