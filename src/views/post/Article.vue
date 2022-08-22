@@ -3,7 +3,7 @@
   <AppTopNav />
   <div class="main-content">
     <div class="left-column">
-      <div class="title">{{ height.height }}</div>
+      <div class="title">「React进阶」 React全部api解读+基础实践大全(夯实基础2万字总结)</div>
       <AuthorInfo></AuthorInfo>
       <Content></Content>
     </div>

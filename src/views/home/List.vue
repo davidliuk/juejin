@@ -7,7 +7,7 @@
           <li class="item" v-for="item in datas" :key="item.ID">
             <div class="entry" style="margin-bottom: 0px;">
               <div class="meta-container">
-                <a :href="`https://juejin.cn/user/${ item.article_info.user_id }`" target="_blank" class="user-message">
+                <a href="`https://juejin.cn/user/${ item.article_info.user_id }`" target="_blank" class="user-message">
                   <div class="popover-box user-popover">
                     <AuthorInfo class="author-info" :authorObj=" item.author_user_info " />
                     {{item.author_user_info.user_name}}
@@ -28,12 +28,12 @@
               <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
                 <div class="content-main">
                   <div class="title-row">
-                    <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" class="title">
+                    <a href="http://localhost:5173/#/post" target="_blank" class="title">
                       {{ item.article_info.title }}
                     </a>
                   </div>
                   <div class="abstract">
-                    <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" >
+                    <a href="http://localhost:5173/#/post" target="_blank" >
                       <div>
                       {{ item.article_info.brief_content }}
                       </div>
@@ -54,7 +54,7 @@
                     </li>
                   </ul>
                 </div>
-                <a :href="`https://juejin.cn/post/${ item.article_id }`" target="_blank" >
+                <a href="http://localhost:5173/#/post" target="_blank" >
                   <img :src="item.article_info.cover_image" alt="HTTP/3，它来了" class="lazy thumb" loading="lazy" style="">
                 </a>
               </div>
