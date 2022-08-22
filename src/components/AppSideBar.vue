@@ -261,7 +261,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { onMounted, ref } from 'vue'
 export default {
   name: "Aside",

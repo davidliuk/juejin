@@ -93,7 +93,7 @@
                         {{ item.category_info.second_category_name }}
                       </span>
                     </div>
-                    <button disabled="disabled" class="btn-block-tag">
+                    <button disabled:Boolean="disabled" class="btn-block-tag">
                       确定屏蔽
                     </button>
                   </div>
@@ -155,7 +155,7 @@ export default {
       //组件卸载时，停止监听
       window.removeEventListener("scroll", scrollHandle, false);
     });
-    const datas = ref([])
+    const datas:any = ref([])
     let readyForLoad = true; //默认允许加载一次
     loadMore()
     // 内容加载函数

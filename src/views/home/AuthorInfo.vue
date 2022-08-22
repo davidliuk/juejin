@@ -48,8 +48,9 @@
 </template>
   
 <script lang='ts'>
+//列表左上方作者名有鼠标悬停时，展示该组件
+//接收参数-作者的详细信息对象
 import { defineComponent } from 'vue'
-  
 export default defineComponent({
   name: 'AuthorInfo',
   props: {

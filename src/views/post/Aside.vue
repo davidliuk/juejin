@@ -87,7 +87,7 @@
     <!-- 掘金微信交流群推广 -->
     <img
       class="wx-share"
-      src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/default.640d9a7.png"
+      src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/default.640d9a7.png"
     />
     <!-- 相关文章 -->
     <div class="relevantArticle-box" v-if="relevantArticles[0] !== undefined">
@@ -107,13 +107,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Catalog from "./Catalog.vue";
 import axios from "axios";
 import { useHeightStore } from "@/store/article";
 
 let relevantArticles = [];
-let userinfo = {};
+let userinfo:any = {};
 let done = false;
 
 let height = useHeightStore();
