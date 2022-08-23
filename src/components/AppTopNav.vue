@@ -10,14 +10,10 @@
           </a>
         </div>
         <ul>
-          <li class="nav-item"><a href="#" class="nav-item-a active" @click="changeColor('.nav-item-a')">首页</a></li>
-          <li class="nav-item"><a href="#" class="nav-item-a" @click="changeColor('.nav-item-a')">沸点</a></li>
-          <li class="nav-item"><a href="#" class="nav-item-a" @click="changeColor('.nav-item-a')">课程</a></li>
-          <li class="nav-item"><a href="#" class="nav-item-a" @click="changeColor('.nav-item-a')">直播</a></li>
-          <li class="nav-item"><a href="#" class="nav-item-a" @click="changeColor('.nav-item-a')">活动</a></li>
-          <li class="nav-item"><a href="#" class="nav-item-a" @click="changeColor('.nav-item-a')">商城</a></li>
-          <li class="nav-item"><a href="#" class="nav-item-a" @click="changeColor('.nav-item-a')">APP</a></li>
-          <li class="nav-item"><a href="#" class="nav-item-a" @click="changeColor('.nav-item-a')">插件</a></li>
+          <li class="nav-item" v-for="(item,index) in list[0]['list0'][0]['items']">
+            <a href="#" :class="[list[0]['list0'][0]['currentIndex'] === index?'active':'']"
+               @click="clickChangeColor(0,index)">{{ item }}</a>
+          </li>
         </ul>
         <!-- 搜索框部分 -->
         <div :class="['search-and-creatorcenter', isSearchFocus ? 'focus' : '']">
@@ -108,17 +104,11 @@
         </li>
       </div>
       <div class="container-2">
-        <a href="#" class="nav-item-b active" @click="changeColor('.nav-item-b')">综合</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">关注</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">后端</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">前端</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">Android</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">IOS</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">人工智能</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">开发工具</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">代码人生</a>
-        <a href="#" class="nav-item-b" @click="changeColor('.nav-item-b')">阅读</a>
-        <a href="#" class="nav-item-b right" @click="changeColor('.nav-item-b')">标签管理</a>
+        <a href="#" v-for="(item,index) in list[0]['list1'][0]['items']"
+           :class="['nav-item-second',list[0]['list1'][0]['currentIndex']===index?'active':'',item==='标签管理'?'right':'']"
+           @click="clickChangeColor(1,index)">
+          {{ item }}
+        </a>
       </div>
     </div>
   </nav>
@@ -138,7 +128,18 @@ export default {
       isSearchFocus: false,
       placeholder: '探索稀土掘金',
       // 创作中心展开项
-      isCenterUnfold: false
+      isCenterUnfold: false,
+      // 导航栏列表项
+      list: [{
+        list0: [{
+          items: ['首页', '沸点', '课程', '直播', '活动', '商城', 'APP', '插件'],
+          currentIndex: 0,
+        }],
+        list1: [{
+          items: ['综合', '关注', '后端', '前端', 'Android', 'IOS', '人工智能', '开发工具', '代码人生', '标签管理'],
+          currentIndex: 0,
+        }],
+      }],
     }
   },
   methods: {
@@ -153,20 +154,9 @@ export default {
     unfoldOrFoldList() {
       this.isCenterUnfold = !this.isCenterUnfold
     },
-    changeColor(selector) {
-      const lists = document.querySelectorAll(selector);
-      //console.log(selector,typeof(selector))
-      //console.log(lists)
-      lists.forEach(list => {
-        //console.log(list)
-        list.onclick = () => {
-          lists.forEach(li => li.style.color = '#71777C');
-          //lists.forEach(li => li.style.color = 'red');
-          //console.log(list)
-          list.style.color = '#1e80ff';
-        };
-      });
-    }
+    clickChangeColor(type, index) {
+      this.list[0]['list' + type.toString()][0]['currentIndex'] = index
+    },
   },
   // 处理导航栏上拉隐藏，下拉出现的效果
   setup() {
@@ -565,7 +555,7 @@ export default {
     //height: 45px;
     justify-content: center;
 
-    .nav-item-b {
+    .nav-item-second {
       color: #71777C;
       padding: 0 1rem 0 0;
       font-size: 1.16rem;

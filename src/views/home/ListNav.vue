@@ -2,7 +2,7 @@
   <header class="list-header">
     <nav role="navigation" class="list-nav">
       <ul class="nav-list left">
-        <li v-for="(item,index) in list" :class="['nav-item', currentIndex===index?'active':'']" @click="click(index)">
+        <li v-for="(item,index) in list" :class="['nav-item', currentIndex===index?'active':'']" @click="clickChangeColor(index)">
           <a href="#">{{ item }}</a>
         </li>
       </ul>
@@ -25,7 +25,7 @@ export default {
     }
   },
   methods: {
-    click(index) {
+    clickChangeColor(index) {
       this.currentIndex = index
     }
   }
