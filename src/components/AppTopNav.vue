@@ -190,7 +190,9 @@ export default {
         this.popoverStyle2 = 'display:none'
       } else if (item === "前端") {
         this.popoverStyle2 = 'display:block;top: 45.0156px;left: 412.031px;'
-        this.popoverStyle1 = 'display:none'
+        this.popoverStyle1 = 'display:none;'
+      }else{
+        this.popoverStyle1 = this.popoverStyle2 = 'display:none;'
       }
     },
     mouseLeave() {
