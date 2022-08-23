@@ -109,8 +109,26 @@
         <div class="nav-list">
           <a href="#" v-for="(item,index) in list[0]['list1'][0]['items']"
              :class="['nav-item-second',list[0]['list1'][0]['currentIndex']===index?'active':'',item==='标签管理'?'right':'']"
-             @click="clickChangeColor(1,index)">
+             @click="clickChangeColor(1,index)" @mousemove="mouseOver(item)" @mouseleave="mouseLeave()">
             {{ item }}
+            <div v-if="item==='后端'" class="popover" :style="popoverStyle1">
+              <nav class="tag-nav">
+                <ul class="tag-list">
+                  <li class="tag" v-for="tag in list[0].list2">
+                    <a>{{ tag }}</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div v-else-if="item==='前端'" class="popover" :style="popoverStyle2">
+              <nav class="tag-nav">
+                <ul class="tag-list">
+                  <li class="tag" v-for="tag in list[0].list3">
+                    <a>{{ tag }}</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
           </a>
         </div>
       </div>
@@ -133,6 +151,9 @@ export default {
       placeholder: '探索稀土掘金',
       // 创作中心展开项
       isCenterUnfold: false,
+      // 鼠标悬停框样式
+      popoverStyle1: '',
+      popoverStyle2: '',
       // 导航栏列表项
       list: [{
         list0: [{
@@ -143,6 +164,8 @@ export default {
           items: ['综合', '关注', '后端', '前端', 'Android', 'IOS', '人工智能', '开发工具', '代码人生', '标签管理'],
           currentIndex: 0,
         }],
+        list2: ['后端', 'Java', 'Go', '算法', 'Python', 'Spring Boot', '数据库', '面试', 'MySQL', '架构', 'Spring', 'LeetCode', 'Redis', '前端', '大数据'],
+        list3: ['前端', 'JavaScript', 'Vue.js', 'React.js', 'CSS', '面试', 'TypeScript', '后端', 'Node.js', '前端框架', '算法', 'Webpack', '架构', '微信小程序', 'Android'],
       }],
     }
   },
@@ -161,6 +184,18 @@ export default {
     clickChangeColor(type, index) {
       this.list[0]['list' + type.toString()][0]['currentIndex'] = index
     },
+    mouseOver(item) {
+      if (item === "后端") {
+        this.popoverStyle1 = 'display:block;top: 45.0156px;left: 360.188px;'
+        this.popoverStyle2 = 'display:none'
+      } else if (item === "前端") {
+        this.popoverStyle2 = 'display:block;top: 45.0156px;left: 412.031px;'
+        this.popoverStyle1 = 'display:none'
+      }
+    },
+    mouseLeave() {
+      this.popoverStyle = 'display:none;'
+    }
   },
   // 处理导航栏上拉隐藏，下拉出现的效果
   setup() {
@@ -560,7 +595,7 @@ export default {
     top: 5rem;
     width: 100%;
     height: 3.833rem;
-    z-index: 100;
+    z-index: 0;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
     transition: all .2s;
     transform: translateZ(0);
@@ -580,6 +615,65 @@ export default {
       a {
         height: 3.833rem;
         align-items: center;
+
+
+        .popover {
+          position: fixed;
+          top: 3.75rem;
+          left: 2rem;
+          display: none;
+          padding: 1.17rem 1.17rem 0.17rem;
+          width: 30rem;
+          max-height: 16.67rem;
+          font-weight: 400;
+          line-height: 1.2;
+          background-color: #fff;
+          border: 1px solid #ebebeb;
+          box-sizing: border-box;
+          border-radius: 2px;
+          cursor: default;
+          z-index: 250;
+
+          .tag-nav {
+            display: block;
+
+            .tag-list {
+              display: flex;
+              flex-wrap: wrap;
+              padding: 0;
+              margin: 0;
+
+              .tag {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 2rem;
+                background-color: #f4f5f5;
+                border-radius: 1rem;
+                font-size: 1.1rem;
+                color: #71777d;
+                padding: 0 0.83rem;
+                margin-right: 1rem;
+                margin-bottom: 1rem;
+                list-style: none;
+
+                a {
+                  color: inherit;
+                  text-decoration: none;
+                  cursor: pointer;
+                  margin: initial;
+                  background-color: transparent;
+                  text-align: center;
+                  height: 1.32rem;
+                }
+              }
+
+              .tag:hover {
+                color: #007fff;
+              }
+            }
+          }
+        }
       }
 
       a:hover {
@@ -603,5 +697,6 @@ export default {
       }
     }
   }
+
 }
 </style>
