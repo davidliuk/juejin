@@ -25,39 +25,42 @@
                   </a>
                 </div>
               </div>
-              <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
-                <div class="content-main">
-                  <div class="title-row">
-                    <a href="http://localhost:5173/#/post" target="_blank" class="title">
-                      {{ item.article_info.title }}
-                    </a>
+              <!-- <RouterLink :to="`/sub/${sub.id}`" @click="hide(item)"></RouterLink> -->
+              <RouterLink :to="`/post`">
+                <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
+                  <div class="content-main">
+                    <div class="title-row">
+                      <a href="#" target="_blank" class="title">
+                        {{ item.article_info.title }}
+                      </a>
+                    </div>
+                    <div class="abstract">
+                      <a href="#" target="_blank" >
+                        <div>
+                        {{ item.article_info.brief_content }}
+                        </div>
+                      </a>
+                    </div>
+                    <ul class="action-list jh-timeline-action-area">
+                      <li class="item view">
+                        <i></i>
+                        <span>{{ item.article_info.view_count }}</span>
+                      </li>
+                      <li class="item like">
+                        <i></i>
+                        <span>{{ item.article_info.digg_count }}</span>
+                      </li>
+                      <li class="item comment">
+                        <i></i>
+                        <span>{{ item.article_info.comment_count }}</span>
+                      </li>
+                    </ul>
                   </div>
-                  <div class="abstract">
-                    <a href="http://localhost:5173/#/post" target="_blank" >
-                      <div>
-                      {{ item.article_info.brief_content }}
-                      </div>
-                    </a>
-                  </div>
-                  <ul class="action-list jh-timeline-action-area">
-                    <li class="item view">
-                      <i></i>
-                      <span>{{ item.article_info.view_count }}</span>
-                    </li>
-                    <li class="item like">
-                      <i></i>
-                      <span>{{ item.article_info.digg_count }}</span>
-                    </li>
-                    <li class="item comment">
-                      <i></i>
-                      <span>{{ item.article_info.comment_count }}</span>
-                    </li>
-                  </ul>
+                  <a href="#" target="_blank" >
+                    <img :src="item.article_info.cover_image" alt="HTTP/3，它来了" class="lazy thumb" loading="lazy" style="">
+                  </a>
                 </div>
-                <a href="http://localhost:5173/#/post" target="_blank" >
-                  <img :src="item.article_info.cover_image" alt="HTTP/3，它来了" class="lazy thumb" loading="lazy" style="">
-                </a>
-              </div>
+              </RouterLink>
               <div class="dislike-button">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon-close">
                   <path d="M1.70538 11.7191C1.52399 11.899 1.22992 11.899 1.04853 11.7191L1.03125 11.7019C0.849866 11.522 0.84987 11.2302 1.03125 11.0502L10.2956 1.85884C10.477 1.67889 10.7711 1.67889 10.9525 1.85885L10.9697 1.876C11.1511 2.05596 11.1511 2.34773 10.9697 2.52769L1.70538 11.7191Z"></path>
