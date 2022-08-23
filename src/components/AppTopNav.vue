@@ -54,13 +54,13 @@
               </div>
               <div class="item">
                 <img class="icon"
-                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e5381c85b5939d984a4b0c0edf102122.svg"
+                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/e5381c85b5939d984a4b0c0edf102122.svg"
                      alt=""/>
                 <div class="title">发沸点</div>
               </div>
               <div class="item">
                 <img class="icon"
-                     src="	https://lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/01c75d281edffa91cacfb93189c940b4.svg"
+                     src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/01c75d281edffa91cacfb93189c940b4.svg"
                      alt=""/>
                 <div class="title">写代码</div>
               </div>
