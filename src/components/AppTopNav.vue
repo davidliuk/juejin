@@ -12,7 +12,9 @@
         <ul>
           <li class="nav-item" v-for="(item,index) in list[0]['list0'][0]['items']">
             <a href="#" :class="[list[0]['list0'][0]['currentIndex'] === index?'active':'']"
-               @click="clickChangeColor(0,index)">{{ item }}</a>
+               @click="clickChangeColor(0,index)">
+              {{ item }}
+            </a>
           </li>
         </ul>
         <!-- 搜索框部分 -->
@@ -278,13 +280,24 @@ export default {
           }
 
           a {
+            display: inline-block;
             color: #71777C;
+            position: relative;
+            height: 5rem;
+            line-height: 5rem;
           }
 
-          a:hover {
+          a:hover::before {
             color: #2c3e50;
+            content: "";
+            position: absolute;
+            top: auto;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background-color: #1e80ff;
           }
-
         }
       }
 
