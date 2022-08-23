@@ -104,11 +104,13 @@
         </li>
       </div>
       <div class="container-2">
-        <a href="#" v-for="(item,index) in list[0]['list1'][0]['items']"
-           :class="['nav-item-second',list[0]['list1'][0]['currentIndex']===index?'active':'',item==='标签管理'?'right':'']"
-           @click="clickChangeColor(1,index)">
-          {{ item }}
-        </a>
+        <div class="nav-list">
+          <a href="#" v-for="(item,index) in list[0]['list1'][0]['items']"
+             :class="['nav-item-second',list[0]['list1'][0]['currentIndex']===index?'active':'',item==='标签管理'?'right':'']"
+             @click="clickChangeColor(1,index)">
+            {{ item }}
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -539,39 +541,54 @@ export default {
   }
 
   .container-2 {
-    max-width: 960px;
-    height: 3.833rem;
-    margin: auto;
-    //clear: both;
-    display: flex;
-    align-items: center;
-    line-height: 1;
     left: 0;
     background-color: #fff;
-    //
-    //display: flex;
-    //flex-direction: row;
-    //align-items: center;
-    //height: 45px;
-    justify-content: center;
+    position: fixed;
+    top: 5rem;
+    width: 100%;
+    height: 3.833rem;
+    z-index: 100;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    transition: all .2s;
+    transform: translateZ(0);
 
-    .nav-item-second {
-      color: #71777C;
-      padding: 0 1rem 0 0;
-      font-size: 1.16rem;
+    .nav-list {
+      position: relative;
+      max-width: 960px;
+      height: 3.833rem;
+      width: 960px;
+      margin: auto;
       display: flex;
-    }
+      align-items: center;
+      line-height: 1;
+      left: 0;
+      background-color: #fff;
+      //justify-content: center;
+      a {
+        height: 3.833rem;
+        align-items: center;
+      }
 
-    .active {
-      color: #1E80FF;
-    }
+      a:hover {
+        color: #1E80FF;
+      }
 
-    .right {
-      //float: right;
-      margin-left: 250px;
-      //position: absolute;
-    }
+      .nav-item-second {
+        color: #71777C;
+        padding: 0 1rem 0 1rem;
+        font-size: 1.16rem;
+        display: flex;
+      }
 
+      .right {
+        right: 0;
+        position: absolute;
+      }
+
+      .active {
+        color: #1E80FF;
+      }
+    }
   }
 }
 </style>
