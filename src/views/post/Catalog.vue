@@ -192,10 +192,10 @@ export default {
       }
 
       &.activate {
+        color: #1e80ff;
         .label {
           background-color: #1e80ff;
         }
-        color: #1e80ff;
       }
       &:hover {
         cursor: pointer;

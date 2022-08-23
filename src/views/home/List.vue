@@ -26,7 +26,7 @@
                 </div>
               </div>
               <!-- <RouterLink :to="`/sub/${sub.id}`" @click="hide(item)"></RouterLink> -->
-              <RouterLink :to="`/post`">
+              <RouterLink :to="`/post`" target="_blank">
                 <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
                   <div class="content-main">
                     <div class="title-row">
