@@ -20,7 +20,7 @@
           <span class="title">
           <!-- 需要根据时间进行输出 -->
           {{ helloWord }}好！
-          <!-- 下午晚上早上好！ -->
+            <!-- 下午晚上早上好！ -->
           </span>
         </div>
         <button class="signin-btn"><span class="btn-text" data-v-68373e0a="">去签到</span></button>
@@ -29,13 +29,13 @@
     </div>
 
     <!-- 横幅块 -->
-    <div class="banner-block">
-      <div class="banner">
+    <div class="banner-block" ref="banner">
+      <div class="banner" :class="[isFixed?'fixed1':'0']">
         <a href="https://juejin.cn/pin/7129334097113006116?utm_source=slide&amp;utm_medium=banner&amp;utm_campaign=reading"
            target="_blank">
           <img
               src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1342bb1e90e54a4aadceefae35fe5164~tplv-k3u1fbpfcp-no-mark:480:400:0:0.awebp?"
-              width="240" height="200" class="banner-image">
+              width="240" height="200" class="banner-image" alt="">
         </a>
         <div class="ctrl-box">
           <i class="close-btn"></i>
@@ -46,12 +46,12 @@
       </div>
     </div>
     <div class="banner-block">
-      <div class="banner">
+      <div class="banner" :class="[isFixed?'fixed2':'0']">
         <a href="https://juejin.cn/book/7126538479051210766?utm_source=web_banner&amp;utm_medium=banner&amp;utm_campaign=Book_SK_0817"
            target="_blank">
           <img
               src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b6c70fab5e446ce9b8be1678065d4e8~tplv-k3u1fbpfcp-no-mark:480:400:0:0.awebp?"
-              width="240" height="200" class="banner-image">
+              width="240" height="200" class="banner-image" alt="">
         </a>
         <div class="ctrl-box">
           <i class="ion-close-round close-btn"></i>
@@ -63,10 +63,10 @@
     </div>
 
     <!-- 掘金APP 推广 -->
-    <a href="https://juejin.cn/app" target="_blank">
+    <a href="https://juejin.cn/app" target="_blank" :class="[isFixed?'fixed3':'0']">
       <div class="appShare-box">
         <div class="app-link">
-          <img class="qr-img" src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/article.9d13ff7.png"/>
+          <img class="qr-img" src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/article.9d13ff7.png" alt=""/>
           <div class="text-box">
             <div class="line1">下载稀土掘金APP</div>
             <div class="line2">一个帮助开发者成长的社区</div>
@@ -158,21 +158,21 @@
       <ul class="link-list">
         <li class="item">
           <a class="link" href="/book/6844733795329900551" target="_blank">
-            <img src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/juejin-tutu.d58819c.png" class="icon">
+            <img src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/juejin-tutu.d58819c.png" class="icon" alt="">
             <span class="title">稀土掘金漫游指南</span>
           </a>
         </li>
         <li class="item">
           <a class="link" href="/extension" target="_blank">
             <img src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/juejin-extension-icon.4b79fb4.png"
-                 class="icon">
+                 class="icon" alt="">
             <span class="title">安装掘金浏览器插件</span>
           </a>
         </li>
         <li class="item">
           <a class="link" href="https://sourl.co/dQMLD9" rel="nofollow noopener noreferrer"
              target="_blank">
-            <img src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/juejin-miner.b78347c.png" class="icon">
+            <img src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/juejin-miner.b78347c.png" class="icon" alt="">
             <span class="title">前往掘金翻译计划</span>
           </a>
         </li>
@@ -253,7 +253,7 @@
           <div class="qr-panel">
             <div class="title">微信扫一扫</div>
             <img src="//lf3-cdn-tos.bytescm.com/obj/static/xitu_juejin_web/img/juejin-qr.b247fde.jpeg" class="qr"
-                 data-v-18d4e3b6="">
+                 alt="">
           </div>
         </li>
       </ul>
@@ -262,7 +262,8 @@
 </template>
 
 <script lang="ts">
-import { onMounted, ref } from 'vue'
+import {onMounted, onUnmounted, ref} from 'vue'
+
 export default {
   name: "Aside",
   props: {},
@@ -271,34 +272,40 @@ export default {
     onMounted(() => {
       helloTime()
     });
-    function helloTime(){
+
+    function helloTime() {
       let t = new Date().getHours();
-      if(t < 6){
+      if (t < 6) {
         helloWord.value = '凌晨'
-      }else if( t < 11){
+      } else if (t < 11) {
         helloWord.value = '早上'
-      }else if( t < 13){
+      } else if (t < 13) {
         helloWord.value = '中午'
-      }else if( t < 19){
+      } else if (t < 19) {
         helloWord.value = '下午'
-      }else if( t < 24){
+      } else if (t < 24) {
         helloWord.value = '晚上'
       }
       // return helloWord;
     }
+
     return {
-      helloWord,
-    }
+      helloWord
+    };
   },
-  
   data() {
     return {
-      // helloWord
+      isFixed: false,
     };
   },
   mounted() {
+    window.addEventListener('scroll',this.setFixed)
   },
   methods: {
+    setFixed(){
+      let offsetTop = this.$refs.banner.getBoundingClientRect().top;
+      this.isFixed = offsetTop < -1300;
+    },
   },
 }
 </script>
@@ -376,6 +383,9 @@ export default {
   }
 
   .banner-block {
+    //position: -webkit-sticky;
+    //position: sticky;
+    //top: 50px;
     overflow: hidden;
     background-color: #fff;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
@@ -444,8 +454,21 @@ export default {
         }
       }
     }
-  }
 
+    .fixed1 {
+      position: fixed;
+      top: 65px;
+    }
+    .fixed2 {
+      position: fixed;
+      top: 285px;
+    }
+  }
+  .fixed3{
+    position: fixed;
+    top: 505px;
+    width: 240px;
+  }
   .info-box {
     background-color: #fff;
     padding: 20px 20px 10px;

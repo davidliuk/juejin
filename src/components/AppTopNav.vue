@@ -207,7 +207,7 @@ export default {
   },
   // 处理导航栏上拉隐藏，下拉出现的效果
   setup() {
-    //滚动事件处理函数
+    // 滚动事件处理函数
     let isVisible = ref(true);
     let oldValue = 0;
 
