@@ -1,6 +1,6 @@
 <template>
   <!-- <nav>顶部通栏综合等一直吸附在顶部</nav> -->
-  <AppTopNav />
+  <AppTopNav/>
   <!--  <header>头部掘金图标</header>-->
   <!--  <h1>test</h1>-->
   <main class="main-content">
@@ -31,7 +31,9 @@ export default {
 };
 </script>
 
-<style scoped lang="less">
+<style>
+@import "../style.css";
+
 body {
   font-size: 12px;
   line-height: normal;
@@ -42,15 +44,17 @@ body {
   width: 960px;
   margin: 0 auto;
   margin-top: 100px;
-  .left-column {
-    width: 700px;
-  }
-
-  .right-column {
-    position: absolute;
-    width: 240px;
-    top: 0px;
-    right: 0px;
-  }
 }
+
+.main-content .left-column {
+  width: 700px;
+}
+
+.main-content .right-column {
+  position: absolute;
+  width: 240px;
+  top: 0;
+  right: 0;
+}
+
 </style>

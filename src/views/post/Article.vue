@@ -24,7 +24,8 @@ let height = useHeightStore();
 
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
+@import "../../style.css";
 .main-content {
   position: relative;
   width: 960px;
