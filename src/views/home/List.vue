@@ -60,7 +60,7 @@
                   </div>
                   <a>
                     <img :src="item.article_info.cover_image" alt="HTTP/3，它来了" class="lazy thumb" loading="lazy"
-                         style="">
+                         style="" onerror="this.src='https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image'">
                   </a>
                 </div>
               </RouterLink>
@@ -155,7 +155,6 @@ export default {
       if (id in this.isInterest) {
         return this.isInterest[id]
       } else {
-        console.log(id)
         this.isInterest[id] = true
         return this.isInterest[id]
       }
