@@ -47,7 +47,9 @@ export default {
     clickChangeColor(index) {
       this.currentIndex = index
       if(index==2){
-        this.isClick=!this.isClick
+        this.isClick=1
+      }else{
+        this.isClick=0
       }
     },
     unfoldOrFoldList() {
