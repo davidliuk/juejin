@@ -26,16 +26,16 @@
                 </div>
               </div>
               <!-- <RouterLink :to="`/sub/${sub.id}`" @click="hide(item)"></RouterLink> -->
-              <RouterLink :to="`/post`" target="_blank">
+              <RouterLink tag="a" target="_blank" :to="`/post`">
                 <div class="content-wrapper" style="border-bottom: 1px solid rgba(228, 230, 235, 0.5);">
                   <div class="content-main">
                     <div class="title-row">
-                      <a href="#" target="_blank" class="title">
+                      <a class="title">
                         {{ item.article_info.title }}
                       </a>
                     </div>
                     <div class="abstract">
-                      <a href="#" target="_blank" >
+                      <a>
                         <div>
                         {{ item.article_info.brief_content }}
                         </div>
@@ -56,7 +56,7 @@
                       </li>
                     </ul>
                   </div>
-                  <a href="#" target="_blank" >
+                  <a>
                     <img :src="item.article_info.cover_image" alt="HTTP/3，它来了" class="lazy thumb" loading="lazy" style="">
                   </a>
                 </div>
