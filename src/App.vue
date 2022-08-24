@@ -4,8 +4,4 @@
 </template>
 
 <style>
-:root {
-  font-size: 12px;
-  background-color: #f4f5f5;
-  }
 </style>
