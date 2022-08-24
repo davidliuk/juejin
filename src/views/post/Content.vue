@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import { marked } from "marked";
-// import content from "../../fake-api/article";
 //highlight
 import hljs from "highlight.js";
 import "highlight.js/styles/github.css"; //样式
@@ -20,10 +19,10 @@ export default {
     axios.get(url)
       .then((response: any) => {
         if (response.data) {
-          mainContent.innerHTML = marked(response.data); //解析markdown文件到div显示
+          mainContent.innerHTML = marked(response.data); //解析markdown
           store.height = mainContent.getBoundingClientRect().height + "px";
-          console.log('=============')
           console.log(store.height)
+          // store.headers
         }
       })
       .catch(function (err: any) {
@@ -31,7 +30,6 @@ export default {
           '<h1 class="h1-text">Sorry, this page is under construction</h1>'
           );
         })
-    // mainContent.innerHTML = marked.parse(content);
     let blocks = mainContent.querySelectorAll("pre code");
     blocks.forEach((block: any) => {
       hljs.highlightBlock(block);

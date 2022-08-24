@@ -103,7 +103,7 @@
         </div>
       </div>
     </div>
-    <Catalog class="catalog"></Catalog>
+    <Catalog class="catalog" :style="{ top: height.top }"></Catalog>
   </div>
 </template>
 
@@ -293,8 +293,9 @@ getUserInfo();
 
 .catalog {
   position: sticky;
-  top: 1.767rem;
-  top: 60px; 
+  // top: 1.767rem;
+  // top: 20px; 
   z-index: 9;
+  transition: all .1s;
 }
 </style>

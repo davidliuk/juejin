@@ -53,8 +53,6 @@
     <em class="triangle"></em>
   </span>
   </div>
-
-
 </template>
 
 <script lang='ts'>

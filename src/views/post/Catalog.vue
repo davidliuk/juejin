@@ -21,6 +21,8 @@
 </template>
 
 <script lang="ts">
+import { useHeightStore } from "@/store/article";
+
 export default {
   data() {
     return {
@@ -35,7 +37,7 @@ export default {
     if (passage == null) return;
 
     this.catalogData = [];
-    let headers = Array.from(passage.querySelectorAll("h1, h2, h3")); //获取所有标签为h1，h2的节点
+    let headers = Array.from(passage.querySelectorAll("h1, h2")); //获取所有标签为h1，h2的节点
     headers.forEach((item, index) => {
       this.catalogData.push({
         title: item.innerHTML,
@@ -58,7 +60,7 @@ export default {
         .getElementById(item.id)
         .getBoundingClientRect().top;
       window.scrollTo({
-        top: toTopDistance - windowTop,
+        top: toTopDistance - windowTop - (item.index  < this.currItem? 70: 10),
         behavior: "smooth",
       });
       this.currItem = item.index;
@@ -69,10 +71,11 @@ export default {
       if (this.busy === true) {
         return;
       }
+      useHeightStore().height = document.getElementById("content").getBoundingClientRect().height + "px";
       let passage = document.querySelector(".left-column");
       if (passage == null) return;
 
-      let headers = Array.from(passage.querySelectorAll("h1, h2, h3")); //获取所有标签为h1，h2的节点
+      let headers = Array.from(passage.querySelectorAll("h1, h2")); //获取所有标签为h1，h2的节点
       let catalogData = []
       headers.forEach((item, index) => {
         catalogData.push({
@@ -89,8 +92,8 @@ export default {
       }
 
       this.busy = true;
-
-      let upDragged = false; //如果是false，下拖，否则上拖
+      // 如果是ture上拖
+      let upDragged = false; 
       //先判断是上移了还是下移了
       const newWindowBoundTop = document.body.getBoundingClientRect().top;
       if (this.windowBoundTop > newWindowBoundTop) {
@@ -98,28 +101,26 @@ export default {
       } else {
         upDragged = true;
       }
+      useHeightStore().top = upDragged? '70px': '10px'
+
       this.windowBoundTop = newWindowBoundTop;
 
       let allNum = headers.length;
-      for (let i = 0; i < allNum; i++) {
+      this.currItem = allNum;
+      let top = parseInt(useHeightStore().top.slice(0, -2)) + 10
+      for (let i = 0; i < allNum - 1; i++) {
         if (
-          headers[i].getBoundingClientRect().top > 110
+          headers[i].getBoundingClientRect().top <= top && headers[i + 1].getBoundingClientRect().top > top
         ) {
           this.catalogData.forEach((item) => (item.isActivate = false));
           let indexOfActivate = i;
-          if (upDragged) {
-            indexOfActivate = i === 0 ? 0 : i - 1;
-          }
-          // document.getElementsByClassName('el-tabs__active-bar is-right')[0].setAttribute('style', `height: 40px; transform: translateY(${actualHighlightTitle*40}px);`);
           this.catalogData[indexOfActivate].isActivate = true;
           this.currItem = indexOfActivate;
-          console.log(this.currItem)
           break;
         }
       }
 
-      //下面实现：active项始终显示在可视区内
-      //前5个，后5个，距离锁死就可以了
+      // active项始终显示在可视区内
       let itemBox = document.getElementById("item-box");
       if (this.currItem < 5) {
         itemBox.scrollTop = 0;

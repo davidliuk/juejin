@@ -105,7 +105,7 @@
           </div>
         </li>
       </div>
-      <div class="container-2">
+      <div v-if="show" class="container-2">
         <div class="nav-list">
           <a href="#" v-for="(item,index) in list[0]['list1'][0]['items']"
              :class="['nav-item-second',list[0]['list1'][0]['currentIndex']===index?'active':'',item==='标签管理'?'right':'']"
@@ -144,6 +144,12 @@ import {onMounted, onUnmounted} from "vue";
 export default {
   name: 'AppTopNav',
   components: {IconUser},
+  props: {
+    show: {
+      type: Boolean,
+      default: true
+    }
+  },
   data() {
     return {
       // 搜索栏是否获得焦点
@@ -208,7 +214,7 @@ export default {
     function scrollHandle() {
       // console.log('滚了');
       const scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-      console.log(scrollTop - oldValue);
+      // console.log(scrollTop - oldValue);
       isVisible.value = scrollTop - oldValue <= 0;
       oldValue = scrollTop;
     }

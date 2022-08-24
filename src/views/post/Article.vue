@@ -1,6 +1,6 @@
 <template>
   <nav>顶部通栏综合等一直吸附在顶部</nav>
-  <AppTopNav />
+  <AppTopNav :show="false" />
   <div class="main-content">
     <div class="left-column">
       <div class="title">「React进阶」 React全部api解读+基础实践大全(夯实基础2万字总结)</div>
@@ -28,7 +28,7 @@ let height = useHeightStore();
 .main-content {
   position: relative;
   width: 960px;
-  margin: 70px auto;
+  margin: 20px auto;
   text-align: start;
 
   .left-column {
