@@ -41,6 +41,10 @@
                    type="password">
           </div>
           <input class="btn btn-light btn-md" id="submit" name="submit" type="submit" value="提交">
+<!--          <input class="btn btn-light btn-md" id="submit" name="submit" type="" value="登录">-->
+<!--          <button class="btn btn-light btn-md">-->
+<!--            <a href="http://localhost:5173/juejinweb/#/register">注册</a>-->
+<!--          </button>-->
         </form>
       </div>
     </div>
