@@ -105,7 +105,7 @@
         <!-- 已登录显示 -->
         <li class="avatar" v-show="isLogin">
           <div class>
-            <a href="http://localhost:5173/#/login" target="_blank" style="display: flex">
+            <a href="http://localhost:5173/#/post/show" target="_blank" style="display: flex">
               <img src="https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image"
                    alt="旺崽的头像"
                    class="avatar-img" data-v-248050e4="" data-v-3aafff8a="" data-v-925bf8d6="" loading="lazy">
@@ -117,7 +117,7 @@
         <div class="nav-list">
           <a href="#" v-for="(item,index) in list[0]['list1'][0]['items']"
              :class="['nav-item-second',list[0]['list1'][0]['currentIndex']===index?'active':'',item==='标签管理'?'right':'']"
-             @click="clickChangeColor(1,index)" @mousemove="mouseOver(item)" @mouseleave="mouseLeave()">
+             @click="clickChangeColor(1,index)" @mouseenter="mouseOver(item)" @mouseleave="mouseLeave()">
             {{ item }}
             <div v-if="item==='后端'" class="popover" :style="popoverStyle1">
               <nav class="tag-nav">
