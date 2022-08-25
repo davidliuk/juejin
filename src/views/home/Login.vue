@@ -20,7 +20,8 @@
         <h1>登录</h1>
       </div>
       <div class="row h-100 justify-content-center align-items-center">
-        <form action="api/auth/login" method="post" class="form col-6" role="form" target="_blank" @submit.prevent="checkLogin">
+        <form action="api/auth/login" method="post" class="form col-6" role="form" target="_blank"
+              @submit.prevent="checkLogin">
           <div class="form-group required"><label class="form-control-label" for="username">用户名</label>
             <input v-model="formInline.username" class="form-control" id="username" maxlength="20" minlength="0"
                    name="username" required=""
@@ -31,11 +32,7 @@
                    name="password" required=""
                    type="password">
           </div>
-          <div class="form-group form-check"><input class="form-check-input" id="remember" name="remember"
-                                                    type="checkbox" value="y">
-            <label class="form-check-label" for="remember">记住我</label>
-          </div>
-          <input class="btn btn-light btn-md" id="submit" name="submit" type="submit" value="提交">
+          <input class="btn btn-light btn-md" id="submit" name="submit" type="submit" value="登录">
           <button class="btn btn-light btn-md float-right">
             <a href="http://localhost:5173/juejinweb/#/register">注册</a>
           </button>
@@ -49,6 +46,7 @@
 
 import {methods} from "@arco-design/web-vue/es/_utils/date";
 import axios from "axios";
+import global from '../../global'
 
 export default {
   name: "Login",
@@ -86,19 +84,22 @@ export default {
     checkLogin() {
       console.log(this.formInline)
       axios
-          .post('http://127.0.0.1:5000/auth/login',this.formInline)
+          .post('http://127.0.0.1:5000/auth/login', this.formInline)
           .then((response) => {
             console.log(response)
             console.log(response.data.status)
             if (response.data.status === 'failed') {
               alert('用户名或密码错误')
             } else {
+              alert('登录成功')
+              // const { appContext : { config: { globalProperties } } } = getCurrentInstance()
+              global.isLogin = true
               //sessionStorage.setItem('userInfo', JSON.stringify(res.data))
               this.$router.push({path: '/'})
             }
           })
     }
-  }
+  },
 }
 </script>
 

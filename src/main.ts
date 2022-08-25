@@ -1,5 +1,5 @@
-import { createApp } from "vue";
-import { createPinia } from "pinia";
+import {createApp} from "vue";
+import {createPinia} from "pinia";
 import ArcoVue from "@arco-design/web-vue";
 import App from "./App.vue";
 import router from "./router";
@@ -14,14 +14,14 @@ const pinia = createPinia();
 app.use(pinia);
 app.use(router);
 app.use(ArcoVue, {
-  // 用于改变使用组件时的前缀名称
-  componentPrefix: "arco",
+    // 用于改变使用组件时的前缀名称
+    componentPrefix: "arco",
 });
-//创建v-highlight全局指令
+// 创建v-highlight全局指令
 app.directive("highlight", function (el) {
-  let blocks = el.querySelectorAll("pre code");
-  blocks.forEach((block: HTMLElement) => {
-    hljs.highlightBlock(block);
-  });
+    let blocks = el.querySelectorAll("pre code");
+    blocks.forEach((block: HTMLElement) => {
+        hljs.highlightBlock(block);
+    });
 });
 app.mount("#app");

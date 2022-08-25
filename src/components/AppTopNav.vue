@@ -75,7 +75,7 @@
                alt=""/>
           <div class="title">会员</div>
         </div>
-        <a class="notify" href="#">
+        <a class="notify" href="#" v-show="isLogin">
           <svg class="notify-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
                xmlns="http://www.w3.org/2000/svg">
             <path
@@ -94,8 +94,16 @@
         <!--          &lt;!&ndash; <IconUser /> &ndash;&gt;-->
         <!--        </a-space>-->
 
+        <!-- 未登录显示 -->
+        <li class="nav-item" v-show="!isLogin">
+          <button class="login-button">
+            <a href="http://localhost:5173/#/login" target="_blank" style="display: flex">
+              登录
+            </a>
+          </button>
+        </li>
         <!-- 已登录显示 -->
-        <li class="avatar">
+        <li class="avatar" v-show="isLogin">
           <div class>
             <a href="http://localhost:5173/#/login" target="_blank" style="display: flex">
               <img src="https://p26-passport.byteacctimg.com/img/mosaic-legacy/3795/3033762272~300x300.image"
@@ -140,6 +148,7 @@
 import {IconUser} from '@arco-design/web-vue/es/icon';
 import {ref} from 'vue'
 import {onMounted, onUnmounted} from "vue";
+import global from '../global'
 
 export default {
   name: 'AppTopNav',
@@ -150,6 +159,9 @@ export default {
       default: true
     }
   },
+  mounted() {
+    this.isLogin = global.isLogin
+  },
   data() {
     return {
       // 搜索栏是否获得焦点
@@ -157,6 +169,8 @@ export default {
       placeholder: '探索稀土掘金',
       // 创作中心展开项
       isCenterUnfold: false,
+      // 是否登录
+      isLogin: false,
       // 鼠标悬停框样式
       popoverStyle1: '',
       popoverStyle2: '',
@@ -197,13 +211,13 @@ export default {
       } else if (item === "前端") {
         this.popoverStyle2 = 'display:block;top: 45.0156px;left: 412.031px;'
         this.popoverStyle1 = 'display:none;'
-      }else{
+      } else {
         this.popoverStyle1 = this.popoverStyle2 = 'display:none;'
       }
     },
     mouseLeave() {
       this.popoverStyle = 'display:none;'
-    }
+    },
   },
   // 处理导航栏上拉隐藏，下拉出现的效果
   setup() {
@@ -573,6 +587,30 @@ export default {
         .notify-icon {
           fill: #8a919f;
           stroke: #8a919f;
+        }
+      }
+
+      .nav-item {
+        color: #007fff;
+        padding: 0 0 0 0.833rem;
+        list-style: none;
+
+        .login-button {
+          background: rgba(30, 128, 255, .05);
+          border: 1px solid rgba(30, 128, 255, .3);
+          border-radius: 4px;
+          padding: 0.3rem 1.5rem;
+          color: #007fff;
+          line-height: 1.9rem;
+          font-size: 14px;
+          font-weight: 400;
+          margin-right: 2rem;
+          height: 3rem;
+
+          a {
+            color: #007fff;
+            //font-weight: normal;
+          }
         }
       }
 
