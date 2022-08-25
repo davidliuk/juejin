@@ -98,6 +98,12 @@ export default {
               this.$router.push({path: '/'})
             }
           })
+          .catch(
+              err => {
+                this.$message.error(err.message)
+                console.log(err)
+              }
+          )
     }
   },
 }

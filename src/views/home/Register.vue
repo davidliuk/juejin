@@ -23,7 +23,7 @@
         <h1>欢迎来到"掘金"</h1>
       </div>
       <div class="row h-100 justify-content-center align-items-center">
-        <form action="api/auth/login" method="post" class="form col-6" role="form" target="_blank"
+        <form action="http://127.0.0.1:5000/auth/login" method="post" class="form col-6" role="form" target="_blank"
               @submit.prevent="checkRegister">
           <div class="form-group required"><label class="form-control-label" for="username">用户名</label>
             <input v-model="formRegister.username" class="form-control" id="username" maxlength="20" minlength="0"
@@ -41,10 +41,6 @@
                    type="password">
           </div>
           <input class="btn btn-light btn-md" id="submit" name="submit" type="submit" value="提交">
-<!--          <input class="btn btn-light btn-md" id="submit" name="submit" type="" value="登录">-->
-<!--          <button class="btn btn-light btn-md">-->
-<!--            <a href="http://localhost:5173/juejinweb/#/register">注册</a>-->
-<!--          </button>-->
         </form>
       </div>
     </div>
@@ -65,13 +61,13 @@ export default {
       }
     }
   },
-  methods:{
-    checkRegister(){
+  methods: {
+    checkRegister() {
       axios
-          .post('http://127.0.0.1:5000/auth/register',this.formRegister)
+          .post('http://127.0.0.1:5000/auth/register', this.formRegister)
           .then((response) => {
-            console.log(response)
-            console.log(response.data.status)
+            //console.log(response)
+            //console.log(response.data.status)
             if (response.data.status === 'failed') {
               alert('密码不匹配')
             } else {
@@ -80,6 +76,12 @@ export default {
               this.$router.push({path: '/login'})
             }
           })
+          .catch(
+              err => {
+                this.$message.error(err.message)
+                console.log(err)
+              }
+          )
     }
 
   }

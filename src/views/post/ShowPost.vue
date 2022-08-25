@@ -52,7 +52,7 @@ export default {
   created() {
     axios
         .post(
-            "/api/user/post",
+            "http://127.0.0.1:5000/user/post",
         )
         .then((response) => {
           console.log(response)
@@ -74,6 +74,12 @@ export default {
               this.$router.go(0)
             }
           })
+          .catch(
+              err => {
+                this.$message.error(err.message)
+                console.log(err)
+              }
+          )
     }
   }
 }
