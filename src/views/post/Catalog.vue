@@ -205,4 +205,7 @@ export default {
     }
   }
 }
+.catalog-box #item-box .item.activate .text {
+  color: #1e80ff;
+}
 </style>
