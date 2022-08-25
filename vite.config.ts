@@ -35,14 +35,22 @@ export default defineConfig({
   // 添加跨域
   server: {
     open: true, // 自动打开
-    base: "/juejinweb/", // 生产环境路径
+    base: "./ ", // 生产环境路径
     proxy: { // 本地开发环境通过代理实现跨域，生产环境使用 nginx 转发
       // 正则表达式写法
       '^/api': {
-        target: 'http://localhost:5000', // 后端服务实际地址
+        target: 'http://127.0.0.1:5000', // 后端服务实际地址
         changeOrigin: true, //开启代理
         rewrite: (path) => path.replace(/^\/api/, '')
       }
+      // '/api':{
+      //   // 最终想要访问的地址
+      //   target:'http://127.0.0.1:5000',
+      //   changeOrigin:true,//允许跨域
+      //   pathRewrite:{
+      //     {'^/api': ''
+      //   }
+      // }
     }
   }
 });
