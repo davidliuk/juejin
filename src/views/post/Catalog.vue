@@ -106,10 +106,11 @@ export default {
       this.windowBoundTop = newWindowBoundTop;
 
       let allNum = headers.length;
-      this.currItem = allNum;
+      // this.currItem = 0;
       let top = parseInt(useHeightStore().top.slice(0, -2)) + 10
-      for (let i = 0; i < allNum - 1; i++) {
+      for (let i = 0; i < allNum; i++) {
         if (
+          // i + 1 == allNum || 
           headers[i].getBoundingClientRect().top <= top && headers[i + 1].getBoundingClientRect().top > top
         ) {
           this.catalogData.forEach((item) => (item.isActivate = false));

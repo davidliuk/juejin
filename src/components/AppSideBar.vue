@@ -394,6 +394,7 @@ export default {
     font-size: 1.16rem;
     line-height: 1.29;
     color: #333;
+    transition: all .2s;
 
     .banner {
       height: 200px;
