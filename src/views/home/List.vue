@@ -172,7 +172,7 @@ export default {
 
       //距离=总高-滚动距离-可视区高
       let distance = scrollHeight - scrollTop - clientHeight;
-      if (distance < 50) {
+      if (distance < 200) {
         loadMore()
         // console.log( distance );
       }

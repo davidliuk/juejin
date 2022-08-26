@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       catalogData: [],
-      busy: false,
+      working: false,
       allItem: 0,
       currItem: 0,
     };
@@ -68,9 +68,10 @@ export default {
     },
     scrollListener() {
       // 不监听的情况
-      if (this.busy === true) {
+      if (this.working === true) {
         return;
       }
+      this.working = true;
       useHeightStore().height = document.getElementById("content").getBoundingClientRect().height + "px";
       let passage = document.querySelector(".left-column");
       if (passage == null) return;
@@ -91,10 +92,9 @@ export default {
         this.allItem = this.catalogData.length;
       }
 
-      this.busy = true;
       // 如果是ture上拖
       let upDragged = false; 
-      //先判断是上移了还是下移了
+      // 判断是上移了还是下移了
       const newWindowBoundTop = document.body.getBoundingClientRect().top;
       if (this.windowBoundTop > newWindowBoundTop) {
         upDragged = false;
@@ -107,7 +107,7 @@ export default {
 
       let allNum = headers.length;
       // this.currItem = 0;
-      let top = parseInt(useHeightStore().top.slice(0, -2)) + 10
+      let top = parseInt(useHeightStore().top.slice(0, -2)) + 20
       for (let i = 0; i < allNum; i++) {
         if (
           // i + 1 == allNum || 
@@ -121,7 +121,7 @@ export default {
         }
       }
 
-      // active项始终显示在可视区内
+      // 使active项始终显示在可视区内
       let itemBox = document.getElementById("item-box");
       if (this.currItem < 5) {
         itemBox.scrollTop = 0;
@@ -131,7 +131,7 @@ export default {
         itemBox.scrollTop = 45 * (this.currItem - 5);
       }
 
-      this.busy = false;
+      this.working = false;
     },
   },
 };
