@@ -26,10 +26,10 @@
       <h1>写文章</h1>
     </div>
     <div class="mb-3">
-      <form action method="post" class="form" role="form" @submit.prevent="articlePost">
+      <form method="post" class="form" role="form" @submit.prevent="articlePost">
         <div class="form-group required">
           <label class="form-control-label" for="title">标题</label>
-          <input v-model="article.title" class="form-control" id="title" maxlength="60" minlength="1" name="title" required="" type="text">
+          <input v-model="article.title" class="form-control" id="title" maxlength="60" minlength="1" name="title" required="true" type="text">
         </div>
         <div class="form-group"><label class="form-control-label" for="category">分类</label>
           <select v-model="article.category" class="form-control" id="category" name="category">

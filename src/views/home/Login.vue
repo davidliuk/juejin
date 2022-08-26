@@ -24,12 +24,12 @@
               @submit.prevent="checkLogin">
           <div class="form-group required"><label class="form-control-label" for="username">用户名</label>
             <input v-model="formInline.username" class="form-control" id="username" maxlength="20" minlength="0"
-                   name="username" required=""
+                   name="username" required="true"
                    type="text">
           </div>
           <div class="form-group required"><label class="form-control-label" for="password">密码</label>
             <input v-model="formInline.password" class="form-control" id="password" maxlength="128" minlength="1"
-                   name="password" required=""
+                   name="password" required="true"
                    type="password">
           </div>
           <input class="btn btn-light btn-md" id="submit" name="submit" type="submit" value="登录">
